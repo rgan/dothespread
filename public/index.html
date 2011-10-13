@@ -22,13 +22,15 @@
 
     <div style="clear: both;"></div>
 </div>
-<div id="map" style="float:left;width:400px;height:400px">
-</div>
-<iframe style="float:right" id="youtube" title="YouTube video player" class="youtube-player" type="text/html"
+<div style="margin:0 auto;width:500">
+<iframe id="youtube" title="YouTube video player" type="text/html"
         width="500" height="400" src="http://www.youtube.com/embed/z8TaJjt-NkU"
         frameborder="0" allowFullScreen></iframe>
+</div>
+<p style="text-align: center;">Join others around the world and do the spread. </p>
+<div id="map" style="margin:0 auto;width:400px;height:400px">
+</div>
 <div id="videoholder"></div>
-<div class="index_articles" data-bind="template: { name:'videosTemplate'}">
 </div>
 </div>
 
@@ -68,9 +70,9 @@ var youtubeIFrame;
 
 function initialize() {
     var mapOptions = {
-        zoom: 12,
+        zoom: 1,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: newyorkcity
+        center: new google.maps.LatLng(0,0)
     };
 
     map = new google.maps.Map(document.getElementById("map"),
@@ -78,7 +80,7 @@ function initialize() {
 
     youtubeIFrame = document.getElementById("youtube");
     drop();
-    viewModel.getTaggedVideos();
+    //viewModel.getTaggedVideos();
     //$('#videoholder').simpletube({displaytype: 'user', feedid: 'USANetwork2010', activeclass: 'currentvideo'});
 }
 

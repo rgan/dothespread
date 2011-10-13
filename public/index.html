@@ -1,0 +1,136 @@
+<html>
+<head>
+    <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.tmpl.js"></script>
+    <script type="text/javascript" src="js/knockout-1.2.1.js"></script>
+    <script type="text/javascript" src="js/videos.js"></script>
+    <script type="text/javascript" src="js/jquery.simpletube.js"></script>
+    <script type="text/javascript" src="js/jquery.swfobject.1-1-1.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="js/registrations.js"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
+</head>
+<body onload="initialize()" class="home page page-id-4 page-template-default single-author singular one-column content">
+
+<h1 id="site-title"><span><a href="http://dothespread.com/" title="Do The Spread" rel="home">Do The Spread</a></span></h1>
+				<h2 id="site-description">Global Flash Mob</h2>
+<div id=primary>
+<div>
+    <p style="float:left" data-bind="template: { name:'contentTemplate'}"></p>
+
+    <p style="float:right">Language:
+        <select data-bind="options:languages, value: currentLang "> </select></p>
+
+    <div style="clear: both;"></div>
+</div>
+<div id="map" style="float:left;width:400px;height:400px">
+</div>
+<iframe style="float:right" id="youtube" title="YouTube video player" class="youtube-player" type="text/html"
+        width="500" height="400" src="http://www.youtube.com/embed/z8TaJjt-NkU"
+        frameborder="0" allowFullScreen></iframe>
+<div id="videoholder"></div>
+<div class="index_articles" data-bind="template: { name:'videosTemplate'}">
+</div>
+</div>
+
+<script id="contentTemplate" type="text/html">
+    ${viewModel.currentLang}
+</script>
+
+<script id="videosTemplate" type="text/html">
+    <table>
+        <tr>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Video Id</td>
+            <td>Play</td>
+        </tr>
+        {{each videos}}
+        <tr>
+            <td>${title}</td>
+            <td>${author}</td>
+            <td>${id}</td>
+            <td>
+                <button onclick="javascript:youtubeIFrame.src='http://www.youtube.com/embed/${id}'">Select</button>
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</script>
+
+<script>
+var newyorkcity = new google.maps.LatLng(40.71435280, -74.002720);
+
+var markers = [];
+var iterator = 0;
+
+var map;
+var youtubeIFrame;
+
+function initialize() {
+    var mapOptions = {
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: newyorkcity
+    };
+
+    map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);
+
+    youtubeIFrame = document.getElementById("youtube");
+    drop();
+    viewModel.getTaggedVideos();
+    //$('#videoholder').simpletube({displaytype: 'user', feedid: 'USANetwork2010', activeclass: 'currentvideo'});
+}
+
+function clearMarkers() {
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
+}
+
+function drop() {
+    clearMarkers();
+    iterator = 0;
+    for (var i = 0; i < registrations.length; i++) {
+        setTimeout(function() {
+            addMarker();
+        }, i * 200);
+    }
+    //setTimeout("drop()", 3000);
+
+}
+
+function addMarker() {
+    markers.push(new google.maps.Marker({
+        position: registrations[iterator],
+        map: map,
+        draggable: false,
+        animation: google.maps.Animation.DROP
+    }));
+    iterator++;
+}
+var viewModel = {
+    languages : ko.observableArray(["English", "Spanish"]),
+    currentLang : ko.observable("English"),
+    videos: ko.observableArray([]),
+    getTaggedVideos : function() {
+        viewModel.videos.removeAll();
+        youtubeVideos.feed.entry.forEach(function(item) {
+            //tag:youtube.com,2008:video:
+            var id = item.id.$t;
+            if (id.lastIndexOf(":") > -1) {
+                id = id.substring(id.lastIndexOf(":") + 1);
+            }
+            viewModel.videos.push({"author" : item.author[0].name.$t, "title" : item.title.$t, "id" : id});
+        });
+    }
+}
+ko.applyBindings(viewModel);
+
+
+</script>
+
+</body>
+</html>

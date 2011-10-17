@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+    <title>Do the spread</title>
+
+    <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.tmpl.js"></script>
+    <script type="text/javascript" src="js/knockout-1.2.1.js"></script>
+    <script type="text/javascript" src="js/carousel.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/carousel-skin-tango.css"/>
+    <link rel="stylesheet" type="text/css" href="css/carousel.css"/>
+
+    <script type="text/javascript">
+        /**
+         * We use the initCallback callback
+         * to assign functionality to the controls
+         */
+        function mycarousel_initCallback(carousel) {
+            $('.jcarousel-control a').bind('click', function() {
+                carousel.scroll($.jcarousel.intval($(this).text()));
+                return false;
+            });
+
+            $('.jcarousel-scroll select').bind('change', function() {
+                carousel.options.scroll = 1;
+                return false;
+            });
+
+            $('#mycarousel-next').bind('click', function() {
+                carousel.next();
+                return false;
+            });
+
+            $('#mycarousel-prev').bind('click', function() {
+                carousel.prev();
+                return false;
+            });
+        }
+        ;
+
+        // Ride the carousel...
+        jQuery(document).ready(function() {
+            viewModel.getTaggedVideos("soccer", 1, 10);
+        });
+
+    </script>
+
+</head>
+<body class="home page page-id-4 page-template-default single-author singular one-column content">
+<div id="page" class="hfeed">
+    <h1 id="site-title"><span><a href="http://dothespread.com/" title="Do The Spread" rel="home">Do The
+        Spread</a></span></h1>
+
+    <h2 id="site-description">Global Flash Mob</h2>
+
+    <div>
+        <p style="float:left" data-bind="template: { name:'contentTemplate'}"></p>
+
+        <p style="float:right">Language:
+            <select data-bind="options:languages, value: currentLang "> </select></p>
+
+        <div style="clear: both;"></div>
+    </div>
+
+    <div style="margin:0 auto;width:500">
+        <iframe id="youtube" title="YouTube video player" type="text/html"
+                width="500" height="400" src="http://www.youtube.com/embed/z8TaJjt-NkU"
+                frameborder="0" allowFullScreen></iframe>
+    </div>
+    <div id="wrap" data-bind="template: { name:'videosTemplate'}"></div>
+
+</div>
+
+<script id="contentTemplate" type="text/html">
+    ${viewModel.currentLang}
+</script>
+
+<script id="videosTemplate" type="text/html">
+    <div id="mycarousel" class="jcarousel-skin-tango">
+        <div class="jcarousel-control">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">7</a>
+            <a href="#">8</a>
+            <a href="#">9</a>
+            <a href="#">10</a>
+        </div>
+
+        <ul>
+            {{each videos}}
+            <li><img width="75" height="75" title="${title}" src='${thumbnail}'
+                 onclick="javascript:youtubeIFrame.src='http://www.youtube.com/embed/${id}'"/></li>
+            {{/each}}
+        </ul>
+
+        <div class="jcarousel-scroll">
+            <form action="">
+                <a href="#" id="mycarousel-prev">&laquo; Prev</a>
+                <a href="#" id="mycarousel-next">Next &raquo;</a>
+            </form>
+        </div>
+
+    </div>
+
+</script>
+
+<script>
+    var viewModel = {
+        languages : ko.observableArray(["English", "Spanish"]),
+        currentLang : ko.observable("English"),
+        videos: ko.observableArray([]),
+        getTaggedVideos : function(query, start, max_results) {
+            viewModel.videos.removeAll();
+            $.ajax({
+                url: "https://gdata.youtube.com/feeds/api/videos?q=" + query + "&start-index=" + start + "&max-results=" + max_results + "&v=2&alt=jsonc",
+                dataType: 'jsonp',
+                success: function(data) {
+                    var entries = data.data.items || [];
+                    entries.forEach(function(entry) {
+                        viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault});
+                    });
+                    $("#mycarousel").jcarousel({
+                        scroll: 1,
+                        initCallback: mycarousel_initCallback,
+                        // This tells jCarousel NOT to autobuild prev/next buttons
+                        buttonNextHTML: null,
+                        buttonPrevHTML: null
+                    });
+                }
+            });
+        }
+    }
+    ko.applyBindings(viewModel);
+</script>
+</body>
+</html>

@@ -1,37 +1,41 @@
 <html>
 <head>
     <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/carousel.js"></script>
     <script type="text/javascript" src="js/jquery.tmpl.js"></script>
     <script type="text/javascript" src="js/knockout-1.2.1.js"></script>
-    <script type="text/javascript" src="js/videos.js"></script>
-    <script type="text/javascript" src="js/jquery.simpletube.js"></script>
-    <script type="text/javascript" src="js/jquery.swfobject.1-1-1.min.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="js/registrations.js"></script>
-    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/carousel-skin-tango.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="css/carousel.css"/>
 </head>
-<body onload="initialize()" class="home page page-id-4 page-template-default single-author singular one-column content">
+<body class="home page page-id-4 page-template-default single-author singular one-column content">
 <div id="page" class="hfeed">
-    <h1 id="site-title"><span><a href="http://dothespread.com/" title="Do The Spread" rel="home">Do The Spread</a></span></h1>
-				<h2 id="site-description">Global Flash Mob</h2>
-<div>
-    <p style="float:left" data-bind="template: { name:'contentTemplate'}"></p>
+    <h1 id="site-title"><span><a href="http://dothespread.com/" title="Do The Spread" rel="home">Do The
+        Spread</a></span></h1>
 
-    <p style="float:right">Language:
-        <select data-bind="options:languages, value: currentLang "> </select></p>
+    <h2 id="site-description">Global Flash Mob</h2>
 
-    <div style="clear: both;"></div>
-</div>
-<div style="margin:0 auto;width:500">
-<iframe id="youtube" title="YouTube video player" type="text/html"
-        width="500" height="400" src="http://www.youtube.com/embed/z8TaJjt-NkU"
-        frameborder="0" allowFullScreen></iframe>
-</div>
-<p style="text-align: center;">Join others around the world and do the spread. </p>
-<div id="map" style="margin:0 auto;width:400px;height:400px">
-</div>
-<div id="videoholder"></div>
-</div>
+    <div>
+        <p style="float:left" data-bind="template: { name:'contentTemplate'}"></p>
+
+        <p style="float:right">Language:
+            <select data-bind="options:languages, value: currentLang "> </select></p>
+
+        <div style="clear: both;"></div>
+    </div>
+    <div style="margin:0 auto;width:500">
+        <iframe id="youtube" title="YouTube video player" type="text/html"
+                width="500" height="400" src="http://www.youtube.com/embed/z8TaJjt-NkU"
+                frameborder="0" allowFullScreen></iframe>
+    </div>
+    <p style="text-align: center;">Join others around the world and do the spread. </p>
+
+    <p style="text-align: center;" data-bind="template: { name:'videosTemplate'}"></p>
+
+    <div id="map" style="margin:0 auto;width:400px;height:400px">
+    </div>
 </div>
 
 <script id="contentTemplate" type="text/html">
@@ -39,27 +43,37 @@
 </script>
 
 <script id="videosTemplate" type="text/html">
-    <table>
-        <tr>
-            <td>Title</td>
-            <td>Author</td>
-            <td>Video Id</td>
-            <td>Play</td>
-        </tr>
-        {{each videos}}
-        <tr>
-            <td>${title}</td>
-            <td>${author}</td>
-            <td>${id}</td>
-            <td>
-                <button onclick="javascript:youtubeIFrame.src='http://www.youtube.com/embed/${id}'">Select</button>
-            </td>
-        </tr>
-        {{/each}}
-    </table>
+    <div id="mycarousel" class="jcarousel-skin-tango">
+        <div class="jcarousel-control">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">7</a>
+            <a href="#">8</a>
+            <a href="#">9</a>
+            <a href="#">10</a>
+        </div>
+        <ul>
+            {{each videos}}
+            <li><img width="100" height="100" title="${title}" src='${thumbnail}'
+                     onclick="javascript:youtubeIFrame.src='http://www.youtube.com/embed/${id}'"/></li>
+            {{/each}}
+        </ul>
+        <div class="jcarousel-scroll">
+            <form action="">
+                <a href="#" id="mycarousel-prev">&laquo; Prev</a>
+                <a href="#" id="mycarousel-next">Next &raquo;</a>
+            </form>
+        </div>
 </script>
 
 <script>
+jQuery(document).ready(function() {
+    initialize();
+});
 var newyorkcity = new google.maps.LatLng(40.71435280, -74.002720);
 
 var markers = [];
@@ -72,7 +86,7 @@ function initialize() {
     var mapOptions = {
         zoom: 1,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: new google.maps.LatLng(0,0)
+        center: new google.maps.LatLng(0, 0)
     };
 
     map = new google.maps.Map(document.getElementById("map"),
@@ -80,9 +94,34 @@ function initialize() {
 
     youtubeIFrame = document.getElementById("youtube");
     drop();
-    //viewModel.getTaggedVideos();
-    //$('#videoholder').simpletube({displaytype: 'user', feedid: 'USANetwork2010', activeclass: 'currentvideo'});
+    viewModel.getTaggedVideos("soccer", 1, 10);
 }
+
+/**
+ * We use the initCallback callback
+ * to assign functionality to the controls
+ */
+function mycarousel_initCallback(carousel) {
+    jQuery('.jcarousel-control a').bind('click', function() {
+        carousel.scroll(jQuery.jcarousel.intval(jQuery(this).text()));
+        return false;
+    });
+
+    jQuery('.jcarousel-scroll select').bind('change', function() {
+        carousel.options.scroll = jQuery.jcarousel.intval(this.options[this.selectedIndex].value);
+        return false;
+    });
+
+    jQuery('#mycarousel-next').bind('click', function() {
+        carousel.next();
+        return false;
+    });
+
+    jQuery('#mycarousel-prev').bind('click', function() {
+        carousel.prev();
+        return false;
+    });
+};
 
 function clearMarkers() {
     for (var i = 0; i < markers.length; i++) {
@@ -112,25 +151,33 @@ function addMarker() {
     }));
     iterator++;
 }
+
 var viewModel = {
     languages : ko.observableArray(["English", "Spanish"]),
     currentLang : ko.observable("English"),
     videos: ko.observableArray([]),
-    getTaggedVideos : function() {
+    getTaggedVideos : function(query, start, max_results) {
         viewModel.videos.removeAll();
-        youtubeVideos.feed.entry.forEach(function(item) {
-            //tag:youtube.com,2008:video:
-            var id = item.id.$t;
-            if (id.lastIndexOf(":") > -1) {
-                id = id.substring(id.lastIndexOf(":") + 1);
+        $.ajax({
+            url: "https://gdata.youtube.com/feeds/api/videos?q=" + query + "&start-index=" + start + "&max-results=" + max_results + "&v=2&alt=jsonc",
+            dataType: 'jsonp',
+            success: function(data) {
+                var entries = data.data.items || [];
+                entries.forEach(function(entry) {
+                    viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault});
+                });
+                jQuery("#mycarousel").jcarousel({
+                    scroll: 1,
+                    initCallback: mycarousel_initCallback,
+                    // This tells jCarousel NOT to autobuild prev/next buttons
+                    buttonNextHTML: null,
+                    buttonPrevHTML: null
+                });
             }
-            viewModel.videos.push({"author" : item.author[0].name.$t, "title" : item.title.$t, "id" : id});
         });
     }
 }
 ko.applyBindings(viewModel);
-
-
 </script>
 
 </body>

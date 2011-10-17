@@ -1,23 +1,76 @@
-/*
-Theme Name:     Do The Spread
-Description:    Do The Spread Theme
-Author:         Laureen Conversano
-Template:       twentyeleven
+#dothespreadtitle {
+    float: left;
+}
 
-(optional values you can add: Theme URI, Author URI, Version)
-*/
+#google_translate_element {
+    float: right
+}
 
-@import url("twentyeleven-style.css");
+.dothespreadfont {
+    font-size: 3em;
+    color: red
+}
 
-body { background: #000; }
-.one-column #page { max-width: 940px; }
-#access, .one-column #branding #searchform { display: none; }
-#main { padding: 0; }
-#site-description { margin-bottom: 0; }
-h2 { font-size: 28px; }
+.smallfont {
+    font-size: 1em;
+    text-align: right;
+}
 
-#site-title a { font-size: 50px; text-shadow: 1px 1px 1px #7CC6F4; }
-#site-title { margin-right: 0px; text-align:center; }
-#site-description { text-align: center; margin: 0; color: #7CC6F4; text-transform: uppercase; font-size: 40px; font-weight: bold; text-shadow: 1px 1px 1px #000; }
-.singular.page .hentry { padding: 0; }
-#wpsc-social-counts .daddydesign img { display: none; }
+#menu {
+}
+
+#countdownclock {
+    vertical-align: top;
+    float: left;
+}
+
+#mainsection {
+    float: left;
+    width: 600px;
+    font-size: 0.5em;
+}
+
+#mainsectiontable th {
+    background-color: gray
+}
+
+#mainsectiontable td {
+    vertical-align: top;
+}
+
+#social {
+    align: center
+}
+
+.dothespreadcolor {
+    color: red;
+}
+
+#main {
+    width: 100%;
+}
+
+.thedate {
+    font-size: 1.5em;
+    color: red;
+    text-align: center;
+    border: 0px 0px 0px 0px;
+}
+
+.thetime {
+    font-size: 1.5em;
+    color: red;
+    text-align: center;
+    border: 0px 0px 0px 0px;
+}
+
+.daysLeft {
+    font-size: 2em;
+    color: blue;
+    text-align: center;
+    border: 0px 0px 0px 0px;
+}
+
+body {
+    font-family: Batik-regular
+}

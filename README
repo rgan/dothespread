@@ -2,3 +2,5 @@ rvm use 1.9.2
 rvm gemset create bym
 rvm gemset use bym
 bundle install
+
+The registration branch includes code for geocoding.

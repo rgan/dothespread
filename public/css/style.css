@@ -7,6 +7,7 @@
 }
 
 .dothespreadfont {
+    font-family: 'batik-font';
     font-size: 3em;
     width: 300px;
     text-align: right;
@@ -28,7 +29,7 @@
 #mainsection {
     float: left;
     width: 600px;
-    font-size: 0.5em;
+    font-size: 1.0em;
 }
 
 #mainsectiontable th {
@@ -69,8 +70,13 @@
     border: 0px 0px 0px 0px;
 }
 
-body {
-    font-family: Batik-regular
+@font-face {
+        font-family: 'batik-font';
+        src: url('/fonts/batik.ttf')  format('truetype'),
 }
 
-.fg-button { clear:left; margin:0 4px 0px 60px; padding: 0em 2em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; }
+body {
+    font-family: 'batik-font'
+}
+
+.fg-button { clear:left; margin:0 4px 0px 60px; padding: 0em 2em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1}

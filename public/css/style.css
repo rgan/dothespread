@@ -78,8 +78,10 @@
 
 
 .contentpanel {
-    background-color: gray;
-    border: 2px 2px 2px 2px;
+	background-color: e6e6e6;
+	border-style:outset;
+	border-width:medium;
+	padding:10px 15px;
 }
 
 

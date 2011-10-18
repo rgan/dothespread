@@ -36,6 +36,10 @@
     font-size: 75%;
 }
 
+#mycarousel {
+    text-align: center
+}
+
 #mycarousel-next,
 #mycarousel-prev {
     cursor: pointer;

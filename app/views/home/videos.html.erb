@@ -1,10 +1,31 @@
-<div style="margin:0 auto;width:500">
-    <iframe id="youtube" title="YouTube video player" type="text/html"
-            width="500" height="400" src="http://www.youtube.com/embed/z8TaJjt-NkU"
-            frameborder="0" allowFullScreen></iframe>
+<div id="mainsection">
+    <table id="mainsectiontable">
+        <tr>
+            <td>
+              <%= render :partial => 'shared/menu',
+                         :locals => {
+                                 :videos_state => 'ui-state-active',
+                                 :home_state => 'ui-state-default',
+                                 :endorsements_state => 'ui-state-default',
+                         }
+              %>
+            </td>
+        </tr>
+        <tr>
+            <td data-bind="template: { name:'videosTemplate'}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <iframe id="youtube" title="YouTube video player" type="text/html"
+                        width="500" height="400" src=""
+                        frameborder="0" allowFullScreen></iframe>
+            </td>
+        </tr>
+    </table>
 </div>
 
-<p style="text-align: center;" data-bind="template: { name:'videosTemplate'}"></p>
+<div style="clear: both;"></div>
 
 <script id="videosTemplate" type="text/html">
     <div id="mycarousel" class="jcarousel-skin-tango">
@@ -35,8 +56,11 @@
 </script>
 
 <script>
+var youtubeIFrame;
+
 jQuery(document).ready(function() {
     viewModel.getTaggedVideos("soccer", 1, 10);
+    youtubeIFrame = document.getElementById("youtube");
 });
 
 /**
@@ -77,6 +101,9 @@ var viewModel = {
                 entries.forEach(function(entry) {
                     viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault});
                 });
+                if (entries.length > 0) {
+                    youtubeIFrame.src='http://www.youtube.com/embed/' + entries[0].id;
+                }
                 jQuery("#mycarousel").jcarousel({
                     scroll: 1,
                     initCallback: mycarousel_initCallback,
@@ -91,4 +118,3 @@ var viewModel = {
 ko.applyBindings(viewModel);
 
 </script>
-

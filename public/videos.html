@@ -1,0 +1,94 @@
+<div style="margin:0 auto;width:500">
+    <iframe id="youtube" title="YouTube video player" type="text/html"
+            width="500" height="400" src="http://www.youtube.com/embed/z8TaJjt-NkU"
+            frameborder="0" allowFullScreen></iframe>
+</div>
+
+<p style="text-align: center;" data-bind="template: { name:'videosTemplate'}"></p>
+
+<script id="videosTemplate" type="text/html">
+    <div id="mycarousel" class="jcarousel-skin-tango">
+        <div class="jcarousel-control">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">7</a>
+            <a href="#">8</a>
+            <a href="#">9</a>
+            <a href="#">10</a>
+        </div>
+        <ul>
+            {{each videos}}
+            <li><img width="100" height="100" title="${title}" src='${thumbnail}'
+                     onclick="javascript:youtubeIFrame.src='http://www.youtube.com/embed/${id}'"/></li>
+            {{/each}}
+        </ul>
+        <div class="jcarousel-scroll">
+            <form action="">
+                <a href="#" id="mycarousel-prev">&laquo; Prev</a>
+                <a href="#" id="mycarousel-next">Next &raquo;</a>
+            </form>
+        </div>
+</script>
+
+<script>
+jQuery(document).ready(function() {
+    viewModel.getTaggedVideos("soccer", 1, 10);
+});
+
+/**
+ * We use the initCallback callback
+ * to assign functionality to the controls
+ */
+function mycarousel_initCallback(carousel) {
+    jQuery('.jcarousel-control a').bind('click', function() {
+        carousel.scroll(jQuery.jcarousel.intval(jQuery(this).text()));
+        return false;
+    });
+
+    jQuery('.jcarousel-scroll select').bind('change', function() {
+        carousel.options.scroll = jQuery.jcarousel.intval(this.options[this.selectedIndex].value);
+        return false;
+    });
+
+    jQuery('#mycarousel-next').bind('click', function() {
+        carousel.next();
+        return false;
+    });
+
+    jQuery('#mycarousel-prev').bind('click', function() {
+        carousel.prev();
+        return false;
+    });
+};
+
+var viewModel = {
+    videos: ko.observableArray([]),
+    getTaggedVideos : function(query, start, max_results) {
+        viewModel.videos.removeAll();
+        $.ajax({
+            url: "https://gdata.youtube.com/feeds/api/videos?q=" + query + "&start-index=" + start + "&max-results=" + max_results + "&v=2&alt=jsonc",
+            dataType: 'jsonp',
+            success: function(data) {
+                var entries = data.data.items || [];
+                entries.forEach(function(entry) {
+                    viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault});
+                });
+                jQuery("#mycarousel").jcarousel({
+                    scroll: 1,
+                    initCallback: mycarousel_initCallback,
+                    // This tells jCarousel NOT to autobuild prev/next buttons
+                    buttonNextHTML: null,
+                    buttonPrevHTML: null
+                });
+            }
+        });
+    }
+}
+ko.applyBindings(viewModel);
+
+</script>
+

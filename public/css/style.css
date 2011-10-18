@@ -8,15 +8,16 @@
 
 .dothespreadfont {
     font-size: 3em;
+    width: 300px;
+    text-align: right;
     color: red
 }
 
-.smallfont {
-    font-size: 1em;
+.smallbluefont {
+    font-size: 1.5em;
+    width: 300px;
     text-align: right;
-}
-
-#menu {
+    color: blue
 }
 
 #countdownclock {
@@ -46,10 +47,6 @@
     color: red;
 }
 
-#main {
-    width: 100%;
-}
-
 .thedate {
     font-size: 1.5em;
     color: red;
@@ -74,3 +71,5 @@
 body {
     font-family: Batik-regular
 }
+
+.fg-button { clear:left; margin:0 4px 0px 60px; padding: 0em 2em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; }

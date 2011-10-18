@@ -70,11 +70,20 @@
     border: 0px 0px 0px 0px;
 }
 
+
 @font-face {
         font-family: 'batik-font';
         src: url('/fonts/batik.ttf')  format('truetype'),
 }
 
+
+.contentpanel {
+    background-color: gray;
+    border: 2px 2px 2px 2px;
+}
+
+
+>>>>>>> Stashed changes
 body {
     font-family: 'batik-font'
 }

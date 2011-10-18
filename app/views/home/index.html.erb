@@ -11,7 +11,7 @@
               %>
             </td>
         </tr>
-        <tr>
+        <tr class= "contentpanel">
             <td>
                 <iframe id="youtube" title="YouTube video player" type="text/html"
                         width="500" height="400" src="http://www.youtube.com/embed/z8TaJjt-NkU?autoplay=0"
@@ -22,8 +22,7 @@
         </tr>
         <tr>
             <td colspan=2>
-              <!--  <div id="map" style="margin:0 auto;width:700px;height:400px">  -->
-
+      
 		 <img src="images/map.png" width="700" >
 	
             </td>
@@ -32,59 +31,3 @@
 </div>
 
 <div style="clear: both;"></div>
-
-<script>
-    jQuery(document).ready(function() {
-        initialize();
-    });
-    var newyorkcity = new google.maps.LatLng(40.71435280, -74.002720);
-
-    var markers = [];
-    var iterator = 0;
-
-    var map;
-
-    function initialize() {
-
-        var mapOptions = {
-            zoom: 1,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            center: new google.maps.LatLng(0, 0)
-        };
-
-        map = new google.maps.Map(document.getElementById("map"),
-                mapOptions);
-        drop();
-    }
-
-    function clearMarkers() {
-        for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(null);
-        }
-        markers = [];
-    }
-
-    function drop() {
-        clearMarkers();
-        iterator = 0;
-        for (var i = 0; i < registrations.length; i++) {
-            setTimeout(function() {
-                addMarker();
-            }, i * 200);
-        }
-        //setTimeout("drop()", 3000);
-
-    }
-
-    function addMarker() {
-        markers.push(new google.maps.Marker({
-            position: registrations[iterator],
-            map: map,
-            draggable: false,
-            animation: google.maps.Animation.DROP
-        }));
-        iterator++;
-    }
-
-</script>
-

@@ -2,8 +2,8 @@
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
    border-radius: 10px;
-    background: #F0F6F9;
-    border: 1px solid #346F97;
+    background: #297ACC;
+    border: 1px outset ;
 }
 
 .jcarousel-skin-tango .jcarousel-direction-rtl {

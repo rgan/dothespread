@@ -48,13 +48,13 @@
                 height: 200,
                 theme: {
                     shell: {
-                        background: '#01B3FA',
+                        background: '#297ACC',
                         color: '#ffffff'
                     },
                     tweets: {
                         background: '#ffffff',
-                        color: '#01B3FA',
-                        links: '#1985b5'
+                        color: '#0040A0',
+                        links: '#cc0000'
                     }
                 },
                 features: {
@@ -66,42 +66,41 @@
             }).render().start();
         </script>
     </div>
-<div>
-	<img src="images/facebook-red.png"  name="facebook_hover"
-	onMouseOver="document.images['facebook_hover'].src='images/facebook-red-mo.png'"  
-	onMouseOut="document.images['facebook_hover'].src='images/facebook-red.png'"   
-	alt="Like on Facebook"  width="50" height = "50" />
 
-	<img src="images/twitter-red.png"  name="twitter_hover"
-	onMouseOver="document.images['twitter_hover'].src='images/twitter-red-mo.png'"  
-	onMouseOut="document.images['twitter_hover'].src='images/twitter-red.png'"   
-	alt="Follow on Twitter"  width="50" height = "50" />
+<div class="socialicon">
+	<table width= "200" >
+	  <tr>
+		
+	    <td><a href="http://www.facebook.com/BuildingYoungMinds">
+				<img src="images/facebook-red.png"  name="facebook_hover"
+		onMouseOver="document.images['facebook_hover'].src='images/facebook-red-mo.png'"  
+		onMouseOut="document.images['facebook_hover'].src='images/facebook-red.png'"   
+	  width="50" height = "50" />
+		</a></td>
+		
+	    <td><a href="http://twitter.com/share?url=http://dothespread.com&via=bym_ny">
+			<img src="images/twitter-red.png"  name="twitter_hover"
+		onMouseOver="document.images['twitter_hover'].src='images/twitter-red-mo.png'"  
+		onMouseOut="document.images['twitter_hover'].src='images/twitter-red.png'"   
+	 width="50" height = "50" />
+		</a></td>
 
-	<img src="images/google-red.png"  name="google_hover"
-	onMouseOver="document.images['google_hover'].src='images/google-red-mo.png'"  
-	onMouseOut="document.images['google_hover'].src='images/google-red.png'"   
-	alt="+1 on Google+"  width="50" height = "50" />
-
-	<img src="images/email-red.png"  name="email_hover"
-	onMouseOver="document.images['email_hover'].src='images/email-red-mo.png'"  
-	onMouseOut="document.images['email_hover'].src='images/email-red.png'"   
-	alt="Email a link"  width="50" height = "50" />
-</div>
-
-    <p>
-    <iframe src="http://www.facebook.com/plugins/like.php?href=http://dothespread.com&amp;layout=button_count&amp;show_faces=true&amp;width=90&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=25"
-            scrolling="no" frameborder="0"
-            style="border:none;margin-left:auto;margin-right:auto; overflow:hidden; width:90px; height:25px;"
-            allowTransparency="true"></iframe>
-    </p>
-    <p><a href="http://twitter.com/share?url=http://dothespread.com&via=bym_ny&count=horizontal"
-          class="twitter-share-button">Tweet</a></p>
-
-    <p>
-        <g:plusone size="medium" href="http://dothespread.com"></g:plusone>
-    </p>
-    <img src="http://www.buildingyoungminds.org/wp-content/themes/smallfolio/images/logo.jpg" class="logo" width="150"
-         alt="">
+	    <td><a href="mailto:?subject=Check out this site&body=The Spread is a dance movement that will unite the world on World AIDS Day 2011. %0A%0A Check out the site www.dothespread.com">
+			<img src="images/email-red.png"  name="email_hover"
+			onMouseOver="document.images['email_hover'].src='images/email-red-mo.png'"  
+			onMouseOut="document.images['email_hover'].src='images/email-red.png'"   
+		 width="50" height = "50" />
+		</a></td>
+		
+	  </tr>
+	   <tr><td colspan="3">   
+		<a href="http://www.buildingyoungminds.org">
+		 <img src="http://www.buildingyoungminds.org/wp-content/themes/smallfolio/images/logo.jpg" 
+		class="logo" width="150"   alt="">
+		</a></td></tr>
+       <tr><td colspan="3">© 2011<br>Building Young Minds</td></tr>	
+	</table>
+</div>	
 </div>
 
 <script id="countdownClockTemplate" type="text/html">
@@ -111,14 +110,7 @@
 </script>
 
 <script>
-    (function() {
-            var po = document.createElement('script');
-            po.type = 'text/javascript';
-            po.async = true;
-            po.src = 'https://apis.google.com/js/plusone.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(po, s);
-        })();
+
 
         var clockModel = {
             getDaysLeft: function() {

@@ -18,7 +18,7 @@
     font-size: 1.5em;
     width: 300px;
     text-align: right;
-    color: #01B3FA
+    color: #0040A0
 }
 
 #countdownclock {
@@ -33,7 +33,7 @@
 }
 
 #mainsectiontable th {
-    background-color: #e6e6e6
+    background-color: #cfcfcf
 }
 
 #mainsectiontable td {
@@ -43,6 +43,13 @@
 
 #social {
     align: center
+}
+
+.socialicon {
+    font-size: 1em;
+    color: #0040A0;
+	text-align: center;
+	align: center;
 }
 
 .dothespreadcolor {
@@ -65,7 +72,7 @@
 
 .daysLeft {
     font-size: 2em;
-    color: #01B3FA;
+    color: #0040A0;
     text-align: center;
     border: 0px 0px 0px 0px;
 }
@@ -78,11 +85,13 @@
 
 
 .contentpanel {
-	background-color: e6e6e6;
+	background-color: #cfcfcf;
 	border-style:outset;
 	border-width:medium;
+	width:"100%";
 	padding:10px 15px;
 }
+
 
 
 >>>>>>> Stashed changes

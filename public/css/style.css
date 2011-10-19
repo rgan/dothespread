@@ -11,14 +11,14 @@
     font-size: 3em;
     width: 300px;
     text-align: right;
-    color: red
+    color: #cc0000
 }
 
 .smallbluefont {
     font-size: 1.5em;
     width: 300px;
     text-align: right;
-    color: blue
+    color: #01B3FA
 }
 
 #countdownclock {
@@ -33,7 +33,7 @@
 }
 
 #mainsectiontable th {
-    background-color: gray
+    background-color: #e6e6e6
 }
 
 #mainsectiontable td {
@@ -46,26 +46,26 @@
 }
 
 .dothespreadcolor {
-    color: red;
+    color: #cc0000;
 }
 
 .thedate {
     font-size: 1.5em;
-    color: red;
+    color: #cc0000;
     text-align: center;
     border: 0px 0px 0px 0px;
 }
 
 .thetime {
     font-size: 1.5em;
-    color: red;
+    color: #cc0000;
     text-align: center;
     border: 0px 0px 0px 0px;
 }
 
 .daysLeft {
     font-size: 2em;
-    color: blue;
+    color: #01B3FA;
     text-align: center;
     border: 0px 0px 0px 0px;
 }

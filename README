@@ -3,3 +3,5 @@ rvm gemset create bym
 rvm gemset use bym
 gem install bundler
 bundle install
+rails server
+App should be available at localhost:3000

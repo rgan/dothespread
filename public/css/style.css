@@ -28,7 +28,7 @@
 
 #mainsection {
     float: left;
-    width: 600px;
+    width: 500px;
     font-size: 1.0em;
 }
 
@@ -92,11 +92,8 @@
 	padding:10px 15px;
 }
 
-
-
->>>>>>> Stashed changes
 body {
     font-family: 'batik-font'
 }
 
-.fg-button { clear:left; margin:0 4px 0px 60px; padding: 0em 2em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1}
+.fg-button { clear:left; margin:0 0px 0px 0px; padding: 0em 2.5em 0em 2.5em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1}

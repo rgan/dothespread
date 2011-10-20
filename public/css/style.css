@@ -15,7 +15,8 @@
 }
 
 .smallbluefont {
-    font-size: 1.5em;
+    font-family" 'courier';
+	font-size: 1.5em;
     width: 300px;
     text-align: right;
     color: #0040A0

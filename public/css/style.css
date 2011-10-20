@@ -34,7 +34,9 @@
 }
 
 #mainsectiontable th {
+ 	width: 700px;
     background-color: #cfcfcf
+	
 }
 
 #mainsectiontable td {

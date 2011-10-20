@@ -13,4 +13,9 @@ describe HomeController do
     response.status.should == 200
   end
 
+  it "should respond to endorsements" do
+    get :endorsements
+    response.status.should == 200
+  end
+
 end

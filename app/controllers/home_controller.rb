@@ -5,4 +5,8 @@ class HomeController < ApplicationController
   def videos
 
   end
+
+  def endorsements
+
+  end
 end

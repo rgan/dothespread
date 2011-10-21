@@ -1,0 +1,67 @@
+<div id="mainsection">
+    <table id="mainsectiontable">
+        <tr>
+            <td>
+              <%= render :partial => 'shared/menu',
+                         :locals => {
+                                 :videos_state => 'ui-state-active',
+                                 :home_state => 'ui-state-default',
+                                 :endorsements_state => 'ui-state-default',
+                         }
+              %>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left;" data-bind="template: { name:'videosTemplate'}">
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="clear: both;"></div>
+
+<script id="videosTemplate" type="text/html">
+            {{each videos}}
+            <div class=video_thumbgroup>
+            <a class="video_thumbnail" href="http://www.youtube.com/v/${id}&rel=0&autoplay=1" rel="shadowbox[videos];width=405;height=340;player=swf" title="${title}">
+                <img width="80" height="50" src='${thumbnail}'/></a>
+              <dl class="video_metadata">
+                <dd class="video_metadata_item">${title}</dd>
+                <dd class="video_metadata_item">Time:${runtime}</dd>
+                <dd class="video_metadata_item">Views:${views}</dd>
+              </dl>
+            </div>
+            {{/each}}
+</script>
+
+<script>
+
+jQuery(document).ready(function() {
+    viewModel.getTaggedVideos("dothespread", 1, 15);
+});
+
+var viewModel = {
+    videos: ko.observableArray([]),
+    getTaggedVideos : function(query, start, max_results) {
+        viewModel.videos.removeAll();
+        $.ajax({
+            url: "https://gdata.youtube.com/feeds/api/videos?q=" + query + "&start-index=" + start + "&max-results=" + max_results + "&v=2&alt=jsonc",
+            dataType: 'jsonp',
+            success: function(data) {
+                var entries = data.data.items || [];
+                entries.forEach(function(entry) {
+                    viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault, "runtime" : entry.duration, "views" : entry.viewCount});
+                });
+                Shadowbox.init({
+                handleOversize: "drag",
+                modal: true
+                });
+            }
+        });
+    }
+}
+ko.applyBindings(viewModel);
+
+</script>
+<link rel="stylesheet" type="text/css" href="shadowbox/shadowbox.css">
+<script type="text/javascript" src="shadowbox/shadowbox.js"></script>

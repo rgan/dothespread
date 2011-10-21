@@ -12,7 +12,7 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: left;" data-bind="template: { name:'videosTemplate'}">
+            <td class="contentpanel"  data-bind="template: { name:'videosTemplate'}">
             </td>
         </tr>
     </table>
@@ -24,10 +24,10 @@
             {{each videos}}
             <div class=video_thumbgroup>
             <a class="video_thumbnail" href="http://www.youtube.com/v/${id}&rel=0&autoplay=1" rel="shadowbox[videos];width=405;height=340;player=swf" title="${title}">
-                <img width="80" height="50" src='${thumbnail}'/></a>
+                <img width="160" height="90" src='${thumbnail}'/></a>
               <dl class="video_metadata">
-                <dd class="video_metadata_item">${title}</dd>
-                <dd class="video_metadata_item">Time:${runtime}</dd>
+                <dd class="video_metadata_item"><b>${title}</b></dd>
+                <dd class="video_metadata_item">Time:${runtime} seconds</dd>
                 <dd class="video_metadata_item">Views:${views}</dd>
               </dl>
             </div>
@@ -37,7 +37,7 @@
 <script>
 
 jQuery(document).ready(function() {
-    viewModel.getTaggedVideos("dothespread", 1, 15);
+    viewModel.getTaggedVideos("dothespread", 1, 9);
 });
 
 var viewModel = {
@@ -54,7 +54,8 @@ var viewModel = {
                 });
                 Shadowbox.init({
                 handleOversize: "drag",
-                modal: true
+                modal: true,
+paginationbelow:true
                 });
             }
         });

@@ -1,7 +1,7 @@
 <div id="mainsection">
     <table id="mainsectiontable">
         <tr>
-            <td colspan="2">
+            <td>
               <%= render :partial => 'shared/menu',
                          :locals => {
                                  :videos_state => 'ui-state-default',
@@ -10,19 +10,24 @@
                          }
               %>
             </td>
+        </tr>    
+
+	<table cellpadding="20" class="contentpanel">
+        <tr  >
+            <td >
+                <iframe id="youtube" title="YouTube video player" type="text/html"
+                        width="400" height="225" src="http://www.youtube.com/embed/z8TaJjt-NkU?autoplay=0"
+                        frameborder="0" allowFullScreen></iframe>
+            </td>
+            <td><span class="dothespreadcolor">The Spread</span> is a dance movement that will unite the world on World <span class="dothespreadcolor">AIDS</span> Day 2011. The students of Building Young Minds created this dance movement to spread awareness for victory over the <span class="dothespreadcolor">virus</span>. You are watching the Building Young Minds submission to United Nations Millennium Development Goals Youth Film Festival.
+            </td>
         </tr>
+ 	</table>
+
+		<tr><td> <br> </td></tr>
 
         <tr>
             <td>
-                <iframe id="youtube" title="YouTube video player" type="text/html"
-                        width="500" height="400" src="http://www.youtube.com/embed/z8TaJjt-NkU?autoplay=0"
-                        frameborder="0" allowFullScreen></iframe>
-            </td>
-            <td class= "contentpanel"><span class="dothespreadcolor">The Spread</span> is a dance movement that will unite the world on World <span class="dothespreadcolor">AIDS</span> Day 2011. The students of Building Young Minds created this dance movement to spread awareness for victory over the <span class="dothespreadcolor">virus</span>. You are watching the Building Young Minds submission to United Nations Millennium Development Goals Youth Film Festival.
-            </td>
-        </tr>
-        <tr>
-            <td colspan=2>
       
 		 <img src="images/map.png" width="700" >
 

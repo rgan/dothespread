@@ -15,12 +15,14 @@
             <td class="contentpanel"  data-bind="template: { name:'videosTemplate'}">
             </td>
         </tr>
+        <tr><td><a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">Upload your video to YouTube</a></td></tr>
     </table>
 </div>
 
 <div style="clear: both;"></div>
 
 <script id="videosTemplate" type="text/html">
+           <div class="videos_container">
             {{each videos}}
             <div class=video_thumbgroup>
             <a class="video_thumbnail" href="http://www.youtube.com/v/${id}&rel=0&autoplay=1" rel="shadowbox[videos];width=405;height=340;player=swf" title="${title}">
@@ -32,6 +34,7 @@
               </dl>
             </div>
             {{/each}}
+         </div>
 </script>
 
 <script>

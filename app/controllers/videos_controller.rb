@@ -3,7 +3,8 @@ class VideosController < ApplicationController
   end
 
   def new
-
+      @token = params[:token]
+      @video = Video.new
   end
 
 end

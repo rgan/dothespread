@@ -1,0 +1,10 @@
+<div id="mainsection">
+  <%= form_for(@video, :as => 'video_form') do |f| %>
+      <%= error_message_list(@video) %>
+      <div>
+        <label for="video_title"><%= t :title_label %></label>
+        <%= f.text_field :title %>
+      <%= f.submit %>
+      </div>
+  <% end %>
+  </div>

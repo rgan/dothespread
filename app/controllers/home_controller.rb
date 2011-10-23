@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  caches_page :index, :endorsements
 
   def index
   end

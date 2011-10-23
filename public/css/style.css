@@ -1,3 +1,14 @@
+.fg-button {
+    clear:left;
+    margin:0 0px 0px 0px;
+    padding: 0em 2.5em 0em 2.5em;
+    text-decoration:none !important;
+    cursor:pointer;
+    position: relative;
+    text-align: center;
+    zoom: 1
+}
+
 #dothespreadtitle {
     float: left;
 }
@@ -15,7 +26,7 @@
 }
 
 .smallbluefont {
-    font-family" 'courier';
+    font-family: 'courier';
 	font-size: 1.5em;
     width: 300px;
     text-align: right;
@@ -81,13 +92,6 @@
     border: 0px 0px 0px 0px;
 }
 
-
-@font-face {
-        font-family: 'batik-font';
-        src: url('/fonts/batik.ttf')  format('truetype'),
-}
-
-
 .contentpanel {
 	background-color: #cfcfcf;
 	width:"100%";
@@ -133,5 +137,3 @@ body {
 .msgError {
     color : red
 }
-
-.fg-button { clear:left; margin:0 0px 0px 0px; padding: 0em 2.5em 0em 2.5em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1}

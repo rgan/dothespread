@@ -4,6 +4,7 @@
       <div>
         <label for="video_title"><%= t :title_label %></label>
         <%= f.text_field :title %>
+        <%= f.hidden_field :token %>
       <%= f.submit %>
       </div>
   <% end %>

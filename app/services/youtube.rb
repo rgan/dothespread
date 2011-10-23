@@ -4,7 +4,7 @@ require 'uri'
 class Youtube
   GDATA_KEY = ""
 
-  def self.postVideoMetadata(token, video)
+  def self.postVideoMetadata(video)
     post_data = <<-xml
 <?xml version="1.0"?>
 <entry xmlns="http://www.w3.org/2005/Atom"
@@ -20,7 +20,7 @@ class Youtube
 </entry>
     xml
     url = URI.parse('http://gdata.youtube.com/action/GetUploadToken')
-    request = Net::HTTP::Post.new(url.path, { 'Authorization' => "AuthSub token=#{token}",
+    request = Net::HTTP::Post.new(url.path, { 'Authorization' => "AuthSub token=#{video.token}",
                                 'GData-Version' => '2',
                                 'X-GData-Key' => GDATA_KEY,
                                 'Content-Type' => 'application/atom+xml; charset=UTF-8',

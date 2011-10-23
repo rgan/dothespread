@@ -5,8 +5,8 @@ end
 
 When /^I post video title "([^"]+)"$/ do |title|
   begin
-    video = Video.new :title => title
-    @response = Youtube.postVideoMetadata(@token, video)
+    video = Video.new(title, @token)
+    @response = Youtube.postVideoMetadata(video)
   rescue Exception => ex
     @error = ex.message
   end

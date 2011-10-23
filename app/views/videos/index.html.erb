@@ -52,9 +52,10 @@ var viewModel = {
             dataType: 'jsonp',
             success: function(data) {
                 var entries = data.data.items || [];
-                entries.forEach(function(entry) {
+                for(i=0; i < entries.length; i++) { // IE needs it to be like this
+                    var entry = entries[i];
                     viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault, "runtime" : entry.duration, "views" : entry.viewCount});
-                });
+                }
                 Shadowbox.init({
                 handleOversize: "drag",
                 modal: true,

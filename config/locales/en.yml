@@ -3,3 +3,5 @@
 
 en:
   title_label: "Enter a title for your video:"
+  video_upload_form_title: "Upload video file"
+  video_metadata_upload_form_title: "Enter metadata for video upload"

@@ -1,4 +1,19 @@
 <div id="mainsection">
+  <table id="mainsectiontable">
+        <tr>
+            <td>
+              <%= render :partial => 'shared/menu',
+                         :locals => {
+                                 :videos_state => 'ui-state-default',
+                                 :home_state => 'ui-state-default',
+                                 :endorsements_state => 'ui-state-default',
+                         }
+              %>
+            </td>
+        </tr>
+        <tr>
+        <td>
+          <h4><%=t :video_metadata_upload_form_title%></h4>
   <%= form_for(@video, :as => 'video_form') do |f| %>
       <%= error_message_list(@video) %>
       <div>
@@ -8,4 +23,5 @@
       <%= f.submit %>
       </div>
   <% end %>
+      </td></tr></table>
   </div>

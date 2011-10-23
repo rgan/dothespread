@@ -9,9 +9,9 @@ module ApplicationHelper
       message_list = ""
 
       errors.full_messages.each do |error|
-        message_list << content_tag("li", error)
+        message_list << error
       end
-      content_tag("div", content_tag("ul", message_list), :class => "msgError")
+      content_tag("div", message_list, :class => "msgError")
     end
   end
 

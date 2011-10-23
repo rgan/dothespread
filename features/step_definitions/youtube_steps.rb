@@ -13,5 +13,5 @@ When /^I post video title "([^"]+)"$/ do |title|
 end
 
 Then /^I should not get back a valid response from youtube$/ do
-  @error.include?("Invalid format for header X-GData-Key").should be_true
+  @error.include?("Invalid developer key").should be_true
 end

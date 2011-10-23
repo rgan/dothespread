@@ -2,7 +2,7 @@ require 'net/http'
 require 'uri'
 
 class Youtube
-  GDATA_KEY = ""
+  GDATA_KEY = ENV['GDATA_KEY'] || ''
 
   def self.postVideoMetadata(video)
     post_data = <<-xml
@@ -22,8 +22,8 @@ class Youtube
     url = URI.parse('http://gdata.youtube.com/action/GetUploadToken')
     request = Net::HTTP::Post.new(url.path, { 'Authorization' => "AuthSub token=#{video.token}",
                                 'GData-Version' => '2',
-                                'X-GData-Key' => GDATA_KEY,
-                                'Content-Type' => 'application/atom+xml; charset=UTF-8',
+                                'X-GData-Key' => "key=#{GDATA_KEY}",
+                                'Content-Type' => 'application/atom+xml; charset=UTF-8'
                               })
     request.body = post_data
     response = Net::HTTP.start(url.host, url.port) {|http| http.request(request)}

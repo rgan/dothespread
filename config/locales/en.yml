@@ -5,3 +5,5 @@ en:
   title_label: "Enter a title for your video:"
   video_upload_form_title: "Upload video file"
   video_metadata_upload_form_title: "Enter metadata for video upload"
+  select_file_for_upload: "Select a file to upload:"
+  uploaded_message: "File was uploaded to YouTube."

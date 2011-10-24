@@ -1,0 +1,20 @@
+<div id="mainsection">
+  <table id="mainsectiontable">
+    <tr>
+      <td>
+        <%= render :partial => 'shared/menu',
+                   :locals => {
+                           :videos_state => 'ui-state-default',
+                           :home_state => 'ui-state-default',
+                           :endorsements_state => 'ui-state-default',
+                   }
+        %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%=t :uploaded_message %> with id:<%=@video_id%>
+      </td>
+    </tr>
+  </table>
+</div>

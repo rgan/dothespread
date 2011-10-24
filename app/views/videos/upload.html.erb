@@ -24,13 +24,13 @@
         <td>
           <h4><%=t :video_upload_form_title%></h4>
   <form action="<%= @url %>" method="post" enctype="multipart/form-data" onsubmit="return checkForFile();">
-    <input id="file" type="file" name="file"/>
+    <%=t :select_file_for_upload%><input id="file" type="file" name="file"/>
 
     <div id="errMsg" style="display:none;color:red">
       You need to specify a file.
     </div>
     <input type="hidden" name="token" value="<%= @response.token %>"/>
-    <input type="submit" value="go"/>
+    <input type="submit" value="Submit"/>
   </form>
       </td></tr></table>
 </div>

@@ -18,9 +18,11 @@
       <%= error_message_list(@video) %>
       <div>
         <label for="video_title"><%= t :title_label %></label>
-        <%= f.text_field :title %>
-        <%= f.hidden_field :token %>
-      <%= f.submit %>
+        <%= f.text_field :title, :size=>60 %><br>
+        <label for="video_keywords"><%= t :keywords_label %></label>
+        <%= f.text_field :keywords, :size => 60 %>
+        <%= f.hidden_field :token %><br>
+      <%= f.submit t :submit_btn %>
       </div>
   <% end %>
       </td></tr></table>

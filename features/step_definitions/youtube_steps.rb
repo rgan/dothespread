@@ -3,11 +3,12 @@ Given /^I have an invalid authsub token and key$/ do
   @key = "invalid"
 end
 
-When /^I post video title "([^"]+)"$/ do |title|
+When /^I post video title "([^"]+)" and keywords "([^"]+)"$/ do |title, keywords|
   begin
-    video = Video.new(title, @token)
+    video = Video.new(title, @token, keywords)
     @response = Youtube.postVideoMetadata(video)
   rescue Exception => ex
+    puts ex.message
     @error = ex.message
   end
 end

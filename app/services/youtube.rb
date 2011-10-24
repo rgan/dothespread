@@ -15,7 +15,7 @@ class Youtube
     <media:category
       scheme="http://gdata.youtube.com/schemas/2007/categories.cat">People
     </media:category>
-    <media:keywords>dothespread</media:keywords>
+    <media:keywords>#{video.keywords}</media:keywords>
   </media:group>
 </entry>
     xml

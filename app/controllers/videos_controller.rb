@@ -5,12 +5,12 @@ class VideosController < ApplicationController
   end
 
   def new
-    @video = Video.new("", params[:token])
+    @video = Video.new("", params[:token], "")
   end
 
   def create
     form_params = params[:video_form]
-    @video = Video.new(form_params[:title], form_params[:token])
+    @video = Video.new(form_params[:title], form_params[:token], form_params[:keywords])
     if @video.valid?
       @response = Youtube.postVideoMetadata(@video)
       @url = @response.url + "?nexturl=" + request.url + "/uploaded"

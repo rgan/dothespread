@@ -7,3 +7,5 @@ en:
   video_metadata_upload_form_title: "Enter metadata for video upload"
   select_file_for_upload: "Select a file to upload:"
   uploaded_message: "File was uploaded to YouTube."
+  keywords_label: "Enter comma-separated list of keywords:"
+  submit_btn: "Submit video metadata"

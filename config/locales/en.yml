@@ -9,3 +9,4 @@ en:
   uploaded_message: "File was uploaded to YouTube."
   keywords_label: "Enter comma-separated list of keywords:"
   submit_btn: "Submit video metadata"
+  default_keywords: "defaults"

@@ -5,7 +5,7 @@ class VideosController < ApplicationController
   end
 
   def new
-    @video = Video.new("", params[:token], "")
+    @video = Video.new("", params[:token], t(:default_keywords))
   end
 
   def create

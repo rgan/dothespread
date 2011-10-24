@@ -1,6 +1,7 @@
 <div id="mainsection">
     <table id="mainsectiontable">
-        <tr>
+         
+     <tr>
             <td>
               <%= render :partial => 'shared/menu',
                          :locals => {
@@ -11,12 +12,26 @@
               %>
             </td>
         </tr>
-        <tr>
+      
+		  <tr><td><a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">Upload <b>your</b> <span class="dothespreadcolor">Do The Spread</span> video to YouTube</a>
+  			</td></tr>
+			
+  <tr>
             <td class="contentpanel"  data-bind="template: { name:'videosTemplate'}">
             </td>
         </tr>
-        <tr><td><a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">Upload your video to YouTube</a></td></tr>
+
+  
+	  <tr><td>		<a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">	
+		<img class="socialicon" src="/images/youtube-red.png"  name="youtube_hover"
+	onMouseOver="document.images['youtube_hover'].src='/images/youtube-red-mo.png'"
+	onMouseOut="document.images['youtube_hover'].src='/images/youtube-red.png'"
+ width="100" /></a>
+				</td></tr>
     </table>
+
+<br><br>
+
 </div>
 
 <div style="clear: both;"></div>

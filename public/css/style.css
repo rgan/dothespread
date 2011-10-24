@@ -30,7 +30,7 @@
 	font-size: 1.5em;
     width: 300px;
     text-align: right;
-    color: #0040A0
+    color: #336600
 }
 
 #countdownclock {
@@ -61,7 +61,7 @@
 
 .socialicon {
     font-size: 1em;
-    color: #0040A0;
+    color: #336600;
 	text-align: center;
 	align: center;
 	border: 0px;
@@ -87,7 +87,7 @@
 
 .daysLeft {
     font-size: 2em;
-    color: #0040A0;
+    color: #336600;
     text-align: center;
     border: 0px 0px 0px 0px;
 }
@@ -135,5 +135,5 @@ body {
 }
 
 .msgError {
-    color : red
+    color : #cc0000
 }

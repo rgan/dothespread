@@ -2,11 +2,11 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  title_label: "Enter a title for your video:"
-  video_upload_form_title: "Upload video file"
-  video_metadata_upload_form_title: "Enter metadata for video upload"
-  select_file_for_upload: "Select a file to upload:"
-  uploaded_message: "File was uploaded to YouTube."
-  keywords_label: "Enter comma-separated list of keywords:"
-  submit_btn: "Submit video metadata"
-  default_keywords: "defaults"
+  title_label: "Give your video a title:"
+  video_upload_form_title: "Share your video!"
+  video_metadata_upload_form_title: "Share your video!"
+  select_file_for_upload: "Locate your video..."
+  uploaded_message: "Your video has been uploaded to YouTube! <br><br> Visit your YouTube account to see this video immediately. Once YouTube processes your video, it should appear in the Video Gallery on this site."
+  keywords_label: "Your video will be tagged with the following keywords:"
+  submit_btn: "Next Step >>"
+  default_keywords: "#dothespread , #buildingyoungminds"

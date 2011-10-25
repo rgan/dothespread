@@ -2,7 +2,8 @@
 
 <script>
     Shadowbox.init({
-        skipSetup: true
+        skipSetup: true,
+        enableKeys: false
     });
 
     window.onload = function() {
@@ -18,6 +19,8 @@
                           '<input name="commit" type="submit" value="<%=t :submit_btn%>" /></div></form>',
             player:     "html",
             modal: true,
+            enableKeys: false,
+            animate: false,
             title:      "<%=t :video_metadata_upload_form_title%>",
             height:     200,
             width:      450

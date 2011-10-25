@@ -5,12 +5,13 @@
     window.onload = function() {
 
         Shadowbox.open({
-            content:    '<div class="whiteOnBlack"><%=t :uploaded_message %> (Id:<%=@video_id%>)</div>',
+            content:    '<div class="whiteOnBlack"><%=t :uploaded_message %> <br><br>(Id:<%=@video_id%>)</div>',
             player:     "html",
             title:      "<%=t :video_uploaded_form_title%>",
             modal:      true,
-            height:     200,
-            width:      450
+			animate: 	false,
+            height:     400,
+            width:      400
         });
 
     };

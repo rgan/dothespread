@@ -101,7 +101,16 @@
 	background-color: #cfcfcf;
 	width:"100%";
 	padding:10px 15px;
-	text-align: left;
+	text-align:left;
+	vertical-align:center;
+}
+
+#videopanel {
+	background-color: #cfcfcf;
+	width:"100%";
+	padding:10px 10px 10px 10px; 
+	text-align:center;
+	vertical-align:center;
 }
 
 body {
@@ -113,14 +122,15 @@ body {
 }
 
 .videos_container {
-    float: left;
+    float: center;
     margin-bottom: 2em;
+	text-align: center;
     width: 100%;
 }
 
 .video_thumbgroup {
     float: left;
-    width: 175px;
+    width: 222px;
     height: 175px;
     line-height: 1.1em;
     font-size: 11px;
@@ -130,13 +140,14 @@ body {
 
 .video_metadata {
     margin-top: 0;
-    text-align: left;
+    text-align: center;
     padding: 0 5% 0 5%;
 }
 
 .video_metadata_item {
     margin-bottom: auto ! important;
     margin-left: 0 ! important;
+	text-align: center;
 }
 
 .msgError {

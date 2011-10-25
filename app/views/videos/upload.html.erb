@@ -11,15 +11,16 @@
     window.onload = function() {
         Shadowbox.open({
             content:'<form action="<%= @url %>" method="post" enctype="multipart/form-data" onsubmit="return checkForFile();">'+
-                    '<div class="hiddenErrMsg">You need to specify a file.</div>' +
-                    '<div class="whiteOnBlack"><%=t :select_file_for_upload%><input id="file" type="file" name="file"/>' +
+                    '<div class="hiddenErrMsg">Woops! You forgot to locate your video.</div>' +
+                    '<br><div class="whiteOnBlack"><%=t :select_file_for_upload%><input id="file" type="file" name="file"/>' +
                     '<input type="hidden" name="token" value="<%= @response.token %>"/></div>' +
-                    '<div class="whiteOnBlack"><input type="submit" value="Submit"/></div></form>',
+                    '<br><div class="whiteOnBlack"><input type="submit" value="Submit"/></div></form>',
             player:     "html",
             title:      "<%=t :video_upload_form_title%>",
             modal:      true,
-            height:     200,
-            width:      450
+			animate: 	false,
+            height:     400,
+            width:      400
         });
     };
 </script>

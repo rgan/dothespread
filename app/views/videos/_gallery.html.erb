@@ -12,32 +12,29 @@
               %>
             </td>
         </tr>
-
+	</table>
+	<table id="videopanel">
 		  <tr>
-            <td><a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">Upload <b>your</b> <span class="dothespreadcolor">Do The Spread</span> video to YouTube</a>
-  			</td>
+            <td>
+				<a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">Upload <b>your </b> <span class="dothespreadcolor">Do The Spread</span> video</a>
+   
+				<a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">
+				<img class="socialicon" src="/images/youtube-red.png" width="60" /></a>
+						</td>
           </tr>
 
-         <tr>
-            <td><a href="javascript:viewModel.getTaggedVideos()">Get more videos</a>
-  			</td>
-          </tr>
-
+  
   <tr>
-            <td class="contentpanel"  data-bind="template: { name:'videosTemplate'}">
+            <td data-bind="template: { name:'videosTemplate'}">
             </td>
         </tr>
 
+       <tr>
+            <td><a href="javascript:viewModel.getTaggedVideos()">Get more videos...</a>
+  			</td>
+          </tr>
 
-	  <tr><td>		<a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">
-		<img class="socialicon" src="/images/youtube-red.png"  name="youtube_hover"
-	onMouseOver="document.images['youtube_hover'].src='/images/youtube-red-mo.png'"
-	onMouseOut="document.images['youtube_hover'].src='/images/youtube-red.png'"
- width="100" /></a>
-				</td></tr>
     </table>
-
-<br><br>
 
 </div>
 
@@ -48,7 +45,7 @@
             {{each videos}}
             <div class=video_thumbgroup>
             <a class="video_thumbnail" href="http://www.youtube.com/v/${id}&rel=0&autoplay=1" title="${title}">
-                <img width="160" height="90" src='${thumbnail}'/></a>
+                <img width="192" height="108" src='${thumbnail}'/></a>
               <dl class="video_metadata">
                 <dd class="video_metadata_item"><b>${title}</b></dd>
                 <dd class="video_metadata_item">Time:${runtime} seconds</dd>
@@ -97,8 +94,8 @@ var viewModel = {
                 handleOversize: "drag",
                 modal: true,
                 enableKeys: true,
-                width: 405,
-                height: 340,
+                width: 600,
+                height: 338,
                 player: "swf",
 paginationbelow:true
                 });

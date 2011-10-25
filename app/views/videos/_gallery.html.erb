@@ -40,7 +40,7 @@
            <div class="videos_container">
             {{each videos}}
             <div class=video_thumbgroup>
-            <a class="video_thumbnail" href="http://www.youtube.com/v/${id}&rel=0&autoplay=1" rel="shadowbox[videos];width=405;height=340;player=swf" title="${title}">
+            <a class="video_thumbnail" href="http://www.youtube.com/v/${id}&rel=0&autoplay=1" title="${title}">
                 <img width="160" height="90" src='${thumbnail}'/></a>
               <dl class="video_metadata">
                 <dd class="video_metadata_item"><b>${title}</b></dd>
@@ -51,10 +51,18 @@
             {{/each}}
          </div>
 </script>
-
+<link rel="stylesheet" type="text/css" href="/shadowbox/shadowbox.css">
+<script type="text/javascript" src="/shadowbox/shadowbox.js"></script>
 <script>
+Shadowbox.init({
+        skipSetup: true
+});
 
 jQuery(document).ready(function() {
+    Shadowbox.init({
+        skipSetup: true,
+        enableKeys: true
+    });
     viewModel.getTaggedVideos("dothespread", 1, 9);
 });
 
@@ -71,9 +79,14 @@ var viewModel = {
                     var entry = entries[i];
                     viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault, "runtime" : entry.duration, "views" : entry.viewCount});
                 }
-                Shadowbox.init({
+                Shadowbox.setup("a.video_thumbnail", {
+                    gallery: "videos",
                 handleOversize: "drag",
                 modal: true,
+                enableKeys: true,
+                width: 405,
+                height: 340,
+                player: "swf",
 paginationbelow:true
                 });
             }
@@ -83,5 +96,3 @@ paginationbelow:true
 ko.applyBindings(viewModel);
 
 </script>
-<link rel="stylesheet" type="text/css" href="/shadowbox/shadowbox.css">
-<script type="text/javascript" src="/shadowbox/shadowbox.js"></script>

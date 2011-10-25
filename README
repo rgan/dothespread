@@ -4,4 +4,12 @@ rvm gemset use bym
 gem install bundler
 bundle install
 rails server
+export GDATA_KEY='xxx' (Youtube developer key for uploading videos)
 App should be available at localhost:3000
+
+Font generator:
+http://www.fontsquirrel.com/fontface/generator
+Good reference on font-face:
+http://www.alistapart.com/articles/cssatten
+Convert from TTF to EOT (Microsoft's proprietary format):
+http://www.kirsle.net/wizards/ttf2eot.cgi

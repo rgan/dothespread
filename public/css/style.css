@@ -152,5 +152,11 @@ body {
 
 @font-face {
   font-family: "Batik";
+  src: url(batik.eot); /* IE */
+}
+
+@font-face {
+  font-family: "Batik";
   src: url(batik.ttf) format("truetype");
+
 }

@@ -1,29 +1,28 @@
-<div id="mainsection">
-  <table id="mainsectiontable">
-        <tr>
-            <td>
-              <%= render :partial => 'shared/menu',
-                         :locals => {
-                                 :videos_state => 'ui-state-default',
-                                 :home_state => 'ui-state-default',
-                                 :endorsements_state => 'ui-state-default',
-                         }
-              %>
-            </td>
-        </tr>
-        <tr>
-        <td>
-          <h4><%=t :video_metadata_upload_form_title%></h4>
-  <%= form_for(@video, :as => 'video_form') do |f| %>
-      <%= error_message_list(@video) %>
-      <div>
-        <label for="video_title"><%= t :title_label %></label>
-        <%= f.text_field :title, :size=>60 %><br>
-        <label for="video_keywords"><%= t :keywords_label %></label>
-        <%= f.text_field :keywords, :size => 60 %>
-        <%= f.hidden_field :token %><br>
-      <%= f.submit t :submit_btn %>
-      </div>
-  <% end %>
-      </td></tr></table>
-  </div>
+<%= render :partial => 'gallery'%>
+
+<script>
+    Shadowbox.init({
+        skipSetup: true
+    });
+
+    window.onload = function() {
+
+        Shadowbox.open({
+            content:    '<form accept-charset="UTF-8" action="/videos" class="video_form_new" id="video_form_new" method="post">' +
+                          "<div class='msgError'>" + "<%=error_message_list(@video)%></div>" + '<div class="whiteOnBlack">' +
+                          '<label for="video_title"><%= t :title_label%></label><br>' +
+                          '<input id="video_form_title" name="video_form[title]" size="60" type="text" value="<%=@video.title%>" /><br>' +
+                          '<label for="video_keywords"><%=t :keywords_label%></label><br>' +
+                          '<input id="video_form_keywords" name="video_form[keywords]" size="60" type="text" value="<%=t :default_keywords%>" />' +
+                          '<input id="video_form_token" name="video_form[token]" type="hidden" value="<%=@video.token%>"/><br>' +
+                          '<input name="commit" type="submit" value="<%=t :submit_btn%>" /></div></form>',
+            player:     "html",
+            modal: true,
+            title:      "<%=t :video_metadata_upload_form_title%>",
+            height:     200,
+            width:      450
+        });
+
+    };
+</script>
+

@@ -9,6 +9,10 @@
     zoom: 1
 }
 
+.whiteOnBlack {
+    color: white;
+}
+
 #dothespreadtitle {
     float: left;
 }
@@ -135,5 +139,12 @@ body {
 }
 
 .msgError {
-    color : #cc0000
+    background-color:  #ffffff;
+    color: red
+}
+
+.hiddenErrMsg {
+    display:none;
+    color:red;
+    background-color: white
 }

@@ -11,7 +11,7 @@ module ApplicationHelper
       errors.full_messages.each do |error|
         message_list << error
       end
-      content_tag("div", message_list, :class => "msgError")
+      message_list
     end
   end
 

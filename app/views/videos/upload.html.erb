@@ -1,36 +1,28 @@
-<div id="mainsection">
-  <script type="text/javascript">
-      function checkForFile() {
-          if (document.getElementById('file').value) {
-              return true;
-          }
-          document.getElementById('errMsg').style.display = '';
-          return false;
-      }
-  </script>
-  <table id="mainsectiontable">
-        <tr>
-            <td>
-              <%= render :partial => 'shared/menu',
-                         :locals => {
-                                 :videos_state => 'ui-state-default',
-                                 :home_state => 'ui-state-default',
-                                 :endorsements_state => 'ui-state-default',
-                         }
-              %>
-            </td>
-        </tr>
-        <tr>
-        <td>
-          <h4><%=t :video_upload_form_title%></h4>
-  <form action="<%= @url %>" method="post" enctype="multipart/form-data" onsubmit="return checkForFile();">
-    <%=t :select_file_for_upload%><input id="file" type="file" name="file"/>
+<%= render :partial => 'gallery'%>
+<script type="text/javascript">
+    function checkForFile() {
+        if (document.getElementById('file').value) {
+            return true;
+        }
+        document.getElementById('errMsg').style.display = '';
+        return false;
+    }
+    Shadowbox.init({
+        skipSetup: true
+    });
 
-    <div id="errMsg" style="display:none;color:red">
-      You need to specify a file.
-    </div>
-    <input type="hidden" name="token" value="<%= @response.token %>"/>
-    <input type="submit" value="Submit"/>
-  </form>
-      </td></tr></table>
-</div>
+    window.onload = function() {
+        Shadowbox.open({
+            content:'<form action="<%= @url %>" method="post" enctype="multipart/form-data" onsubmit="return checkForFile();">'+
+                    '<div class="hiddenErrMsg">You need to specify a file.</div>' +
+                    '<div class="whiteOnBlack"><%=t :select_file_for_upload%><input id="file" type="file" name="file"/>' +
+                    '<input type="hidden" name="token" value="<%= @response.token %>"/></div>' +
+                    '<div class="whiteOnBlack"><input type="submit" value="Submit"/></div></form>',
+            player:     "html",
+            title:      "<%=t :video_upload_form_title%>",
+            modal:      true,
+            height:     200,
+            width:      450
+        });
+    };
+</script>

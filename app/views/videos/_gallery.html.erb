@@ -13,8 +13,15 @@
             </td>
         </tr>
 
-		  <tr><td><a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">Upload <b>your</b> <span class="dothespreadcolor">Do The Spread</span> video to YouTube</a>
-  			</td></tr>
+		  <tr>
+            <td><a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">Upload <b>your</b> <span class="dothespreadcolor">Do The Spread</span> video to YouTube</a>
+  			</td>
+          </tr>
+
+         <tr>
+            <td><a href="javascript:viewModel.getTaggedVideos()">Get more videos</a>
+  			</td>
+          </tr>
 
   <tr>
             <td class="contentpanel"  data-bind="template: { name:'videosTemplate'}">
@@ -64,22 +71,27 @@ jQuery(document).ready(function() {
         skipSetup: true,
         enableKeys: true
     });
-    viewModel.getTaggedVideos("dothespread", 1, 9);
+    viewModel.getTaggedVideos();
 });
 
 var viewModel = {
     videos: ko.observableArray([]),
-    getTaggedVideos : function(query, start, max_results) {
+    currentVideoIndex: 1,
+    videosPerPage: 9,
+    query: "dothespread",
+    getTaggedVideos : function() {
         viewModel.videos.removeAll();
         $.ajax({
-            url: "https://gdata.youtube.com/feeds/api/videos?q=" + query + "&start-index=" + start + "&max-results=" + max_results + "&v=2&alt=jsonc",
+            url: "https://gdata.youtube.com/feeds/api/videos?q=" + viewModel.query + "&start-index=" + viewModel.currentVideoIndex + "&max-results=" + viewModel.videosPerPage + "&v=2&alt=jsonc",
             dataType: 'jsonp',
             success: function(data) {
                 var entries = data.data.items || [];
-                for(i=0; i < entries.length; i++) { // IE needs it to be like this
+                for(i=0; i < entries.length; i++) { // IE8 needs it to be like this
                     var entry = entries[i];
                     viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault, "runtime" : entry.duration, "views" : entry.viewCount});
                 }
+                viewModel.currentVideoIndex = viewModel.currentVideoIndex + entries.length;
+                Shadowbox.teardown("a.video_thumbnail");
                 Shadowbox.setup("a.video_thumbnail", {
                     gallery: "videos",
                 handleOversize: "drag",

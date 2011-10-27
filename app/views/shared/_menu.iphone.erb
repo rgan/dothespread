@@ -1,0 +1,19 @@
+<script>
+    $(function() {
+        $('.fg-button').hover(
+                function() {
+                    $(this).removeClass('ui-state-default').addClass('ui-state-focus');
+                },
+                function() {
+                    $(this).removeClass('ui-state-focus').addClass('ui-state-default');
+                }
+        );
+
+    });
+</script>
+<a tabindex="0" href="/" class="fg-button fg-button-icon-right ui-widget <%=home_state%> ui-corner-all" id="home_menu"></span>
+  Home</a>
+<a tabindex="0" href="/videos" class="fg-button fg-button-icon-right ui-widget <%=videos_state%> ui-corner-all" id="videos_menu"></span>
+  Video Gallery</a>
+<a tabindex="0" href="/endorsements" class="fg-button fg-button-icon-right ui-widget <%=endorsements_state%> ui-corner-all" id="endorse_menu"></span>
+  Endorsements</a>

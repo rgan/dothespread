@@ -12,3 +12,4 @@ en:
   submit_btn: "Next Step >>"
   default_keywords: "#dothespread , #buildingyoungminds"
   uploaded_view_title: "Video Uploaded"
+  service_error: "Error uploading metadata to YouTube. Ensure that your account is setup correctly."

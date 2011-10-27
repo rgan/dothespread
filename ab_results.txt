@@ -1,0 +1,102 @@
+ -------------------------------------------------------------------------
+ ab -n 500 http://floating-dusk-8172.heroku.com/
+ This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+ Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+ Licensed to The Apache Software Foundation, http://www.apache.org/
+
+ Benchmarking floating-dusk-8172.heroku.com (be patient)
+ Completed 100 requests
+ Completed 200 requests
+ Completed 300 requests
+ Completed 400 requests
+ Completed 500 requests
+ Finished 500 requests
+
+
+ Server Software:        nginx/0.7.67
+ Server Hostname:        floating-dusk-8172.heroku.com
+ Server Port:            80
+
+ Document Path:          /
+ Document Length:        7955 bytes
+
+ Concurrency Level:      1
+ Time taken for tests:   27.602 seconds
+ Complete requests:      500
+ Failed requests:        0
+ Write errors:           0
+ Total transferred:      4195733 bytes
+ HTML transferred:       3977500 bytes
+ Requests per second:    18.11 [#/sec] (mean)
+ Time per request:       55.204 [ms] (mean)
+ Time per request:       55.204 [ms] (mean, across all concurrent requests)
+ Transfer rate:          148.45 [Kbytes/sec] received
+
+ Connection Times (ms)
+               min  mean[+/-sd] median   max
+ Connect:       18   23   3.2     23      39
+ Processing:    24   32   6.3     30      68
+ Waiting:       20   28   6.1     26      64
+ Total:         43   55   7.3     53     103
+
+ Percentage of the requests served within a certain time (ms)
+   50%     53
+   66%     56
+   75%     59
+   80%     60
+   90%     64
+   95%     68
+   98%     76
+   99%     82
+  100%    103 (longest request)
+--------------------------------------------------
+ ab -n 500 http://floating-dusk-8172.heroku.com/videos
+ This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+ Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+ Licensed to The Apache Software Foundation, http://www.apache.org/
+
+ Benchmarking floating-dusk-8172.heroku.com (be patient)
+ Completed 100 requests
+ Completed 200 requests
+ Completed 300 requests
+ Completed 400 requests
+ Completed 500 requests
+ Finished 500 requests
+
+
+ Server Software:        nginx/0.7.67
+ Server Hostname:        floating-dusk-8172.heroku.com
+ Server Port:            80
+
+ Document Path:          /videos
+ Document Length:        10291 bytes
+
+ Concurrency Level:      1
+ Time taken for tests:   28.623 seconds
+ Complete requests:      500
+ Failed requests:        0
+ Write errors:           0
+ Total transferred:      5363167 bytes
+ HTML transferred:       5145500 bytes
+ Requests per second:    17.47 [#/sec] (mean)
+ Time per request:       57.246 [ms] (mean)
+ Time per request:       57.246 [ms] (mean, across all concurrent requests)
+ Transfer rate:          182.98 [Kbytes/sec] received
+
+ Connection Times (ms)
+               min  mean[+/-sd] median   max
+ Connect:       18   24   3.5     23      37
+ Processing:    25   33   7.0     31      85
+ Waiting:       21   28   6.8     26      77
+ Total:         44   57   8.4     55     105
+
+ Percentage of the requests served within a certain time (ms)
+   50%     55
+   66%     59
+   75%     62
+   80%     63
+   90%     68
+   95%     72
+   98%     77
+   99%     87
+  100%    105 (longest request)

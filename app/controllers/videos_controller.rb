@@ -12,9 +12,14 @@ class VideosController < ApplicationController
     form_params = params[:video_form]
     @video = Video.new(form_params[:title], form_params[:token], form_params[:keywords])
     if @video.valid?
-      @response = Youtube.postVideoMetadata(@video)
-      @url = @response.url + "?nexturl=" + request.url + "/uploaded"
-      render "upload"
+      begin
+        @response = Youtube.postVideoMetadata(@video)
+        @url = @response.url + "?nexturl=" + request.url + "/uploaded"
+        render "upload"
+      rescue Exception => exception
+        @service_error = t(:service_error)
+        render "new"
+      end
     else
       render "new"
     end

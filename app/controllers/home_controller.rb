@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     response.headers['Cache-Control'] = CACHE_CONTROL_VALUE
     respond_to do |format|
       format.html # index.html.erb
-      format.iphone # index.iphone.erb
+      format.mobile # index.mobile.erb
     end
   end
 

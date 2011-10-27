@@ -1,0 +1,108 @@
+<div id="mainsection">
+    <table id="mainsectiontable">
+
+     <tr>
+            <td>
+              <%= render :partial => 'shared/menu',
+                         :locals => {
+                                 :videos_state => 'ui-state-active',
+                                 :home_state => 'ui-state-default',
+                                 :endorsements_state => 'ui-state-default',
+                         }
+              %>
+            </td>
+        </tr>
+	</table>
+	<table id="videopanel">
+		  <tr>
+            <td>
+				<a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">Upload <b>your </b> <span class="dothespreadcolor">Do The Spread</span> video</a>
+   
+				<a href="https://www.google.com/accounts/AuthSubRequest?next=<%=request.url + "/new"%>&scope=http%3A%2F%2Fgdata.youtube.com&session=0&secure=0">
+				<img class="socialicon" src="/images/youtube-red.png" width="60" /></a>
+						</td>
+          </tr>
+
+  
+  <tr>
+            <td data-bind="template: { name:'videosTemplate'}">
+            </td>
+        </tr>
+
+       <tr>
+            <td><a href="javascript:viewModel.getTaggedVideos()">Get more videos...</a>
+  			</td>
+          </tr>
+
+    </table>
+
+</div>
+
+<div style="clear: both;"></div>
+
+<script id="videosTemplate" type="text/html">
+           <div class="videos_container">
+            {{each videos}}
+            <div class=video_thumbgroup>
+            <a class="video_thumbnail" href="http://www.youtube.com/v/${id}&rel=0&autoplay=1" title="${title}">
+                <img width="192" height="108" src='${thumbnail}'/></a>
+              <dl class="video_metadata">
+                <dd class="video_metadata_item"><b>${title}</b></dd>
+                <dd class="video_metadata_item">Time:${runtime} seconds</dd>
+                <dd class="video_metadata_item">Views:${views}</dd>
+              </dl>
+            </div>
+            {{/each}}
+         </div>
+</script>
+<link rel="stylesheet" type="text/css" href="/shadowbox/shadowbox.css">
+<script type="text/javascript" src="/shadowbox/shadowbox.js"></script>
+<script>
+Shadowbox.init({
+    skipSetup: true,
+    enableKeys: false
+});
+
+jQuery(document).ready(function() {
+    Shadowbox.init({
+        skipSetup: true,
+        enableKeys: true
+    });
+    viewModel.getTaggedVideos();
+});
+
+var viewModel = {
+    videos: ko.observableArray([]),
+    currentVideoIndex: 1,
+    videosPerPage: 9,
+    query: "dothespread",
+    getTaggedVideos : function() {
+        viewModel.videos.removeAll();
+        $.ajax({
+            url: "https://gdata.youtube.com/feeds/api/videos?q=" + viewModel.query + "&start-index=" + viewModel.currentVideoIndex + "&max-results=" + viewModel.videosPerPage + "&v=2&alt=jsonc",
+            dataType: 'jsonp',
+            success: function(data) {
+                var entries = data.data.items || [];
+                for(i=0; i < entries.length; i++) { // IE8 needs it to be like this
+                    var entry = entries[i];
+                    viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault, "runtime" : entry.duration, "views" : entry.viewCount});
+                }
+                viewModel.currentVideoIndex = viewModel.currentVideoIndex + entries.length;
+                Shadowbox.teardown("a.video_thumbnail");
+                Shadowbox.setup("a.video_thumbnail", {
+                    gallery: "videos",
+                handleOversize: "drag",
+                modal: true,
+                enableKeys: true,
+                width: 600,
+                height: 338,
+                player: "swf",
+paginationbelow:true
+                });
+            }
+        });
+    }
+}
+ko.applyBindings(viewModel);
+
+</script>

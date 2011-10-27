@@ -2,6 +2,8 @@ Dothespread::Application.routes.draw do
 
   match 'endorsements', :to => 'home#endorsements'
   match 'videos/uploaded' => "videos#uploaded"
+  match 'analytics' => 'analytics#index'
+
   resources :videos
 
   # You can have the root of your site routed with "root"

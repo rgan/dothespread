@@ -75,7 +75,7 @@ var viewModel = {
     videos: ko.observableArray([]),
     currentVideoIndex: 1,
     videosPerPage: 9,
-    query: "dothespread",
+    query: "dothespread buildingyoungminds",
     getTaggedVideos : function() {
         viewModel.videos.removeAll();
         $.ajax({
@@ -96,7 +96,7 @@ var viewModel = {
                 enableKeys: true,
                 width: 600,
                 height: 338,
-                player: "swf",
+                player: "html",
 paginationbelow:true
                 });
             }

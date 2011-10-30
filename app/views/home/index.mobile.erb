@@ -1,34 +1,212 @@
-<div id="mainsection">
-    <table id="mainsectiontable">
-        <tr>
-            <td>
-              <%= render :partial => 'shared/menu',
-                         :locals => {
-                                 :videos_state => 'ui-state-default',
-                                 :home_state => 'ui-state-active',
-                                 :endorsements_state => 'ui-state-default',
-                         }
-              %>
-            </td>
-        </tr>    
- 	</table>
-	<table cellpadding="20" class="contentpanel" >
-        <tr >
-            <td > MOBILE <BR> 
-				<iframe id="youtube" title="YouTube video player" type="text/html"
-                        width="400" height="225" src="http://www.youtube.com/embed/z8TaJjt-NkU?autoplay=0"
-                        frameborder="0" allowFullScreen></iframe>
-            </td>
-            <td><span class="dothespreadcolor">The Spread</span> is a dance movement that will unite the world on World <span class="dothespreadcolor">AIDS</span> Day 2011. The students of Building Young Minds created this dance movement to spread awareness for victory over the <span class="dothespreadcolor">virus</span>. You are watching the Building Young Minds submission to United Nations Millennium Development Goals Youth Film Festival.
-            </td>
-        </tr>
+<script>
+	$(function() {
+		$( "#accordion" ).accordion({autoheight:false});
+	});
+	</script>
+	
 
-		</table>
-    <table>
-        <tr>
-            <td> <img src="images/map.png" width="700" > </td>
-        </tr>
-      </table>
+<div>
+	<div id="accordion">
+		<h3><a href="#">Home</a></h3>
+		<div>
+			<p>
+				<div id="mainsection">
+				<table width="800">
+				<tr><td><iframe id="youtube" title="YouTube video player" type="text/html"
+				   width="800" height="400" src="http://www.youtube.com/embed/z8TaJjt-NkU?autoplay=0"
+				   frameborder="0" allowFullScreen></iframe>
+		         </td></tr>
+		     	<tr><td cellpadding="5" class="contentpanel"><span class="dothespreadcolor">The Spread</span> is a dance movement that will unite the world on World <span class="dothespreadcolor">AIDS</span> Day 2011. The students of Building Young Minds created this dance movement to spread awareness for victory over the <span class="dothespreadcolor">virus</span>. You are watching the Building Young Minds submission to United Nations Millennium Development Goals Youth Film Festival.
+				</td></tr>
+				<tr> <td align="center"> <img src="images/map.png" width="500" > </td> </tr>
+				</table>
+				</div>
+			</p>
+		</div>
+		<h3><a href="videos">Video Gallery</a></h3>
+		<div>
+			<p>
+				<div id="mainsection">
+				<table id="videopanel" width="800">
+
+				  <tr>
+				            <td data-bind="template: { name:'videosTemplate'}">
+				            </td>
+				        </tr>
+
+				       <tr>
+				            <td><a href="javascript:viewModel.getTaggedVideos()">Get more videos...</a>
+				  			</td>
+				          </tr>
+
+				    </table>
+
+				</div>
+
+				<div style="clear: both;"></div>
+
+				<script id="videosTemplate" type="text/html">
+				           <div class="videos_container">
+				            {{each videos}}
+				            <div class="video_thumbgroup_mobile">
+				            <a class="video_thumbnail" href="http://www.youtube.com/v/${id}&rel=0&autoplay=1" title="${title}">
+				                <img width="288" height="162" src='${thumbnail}'/></a>
+				              <dl class="video_metadata">
+				                <dd class="video_metadata_item"><b>${title}</b></dd>
+				                <dd class="video_metadata_item">Time:${runtime} seconds</dd>
+				                <dd class="video_metadata_item">Views:${views}</dd>
+				              </dl>
+				            </div>
+				            {{/each}}
+				         </div>
+				</script>
+				<link rel="stylesheet" type="text/css" href="/shadowbox/shadowbox.css">
+				<script type="text/javascript" src="/shadowbox/shadowbox.js"></script>
+				<script>
+				Shadowbox.init({
+				    skipSetup: true,
+				    enableKeys: false
+				});
+
+				jQuery(document).ready(function() {
+				    Shadowbox.init({
+				        skipSetup: true,
+				        enableKeys: true
+				    });
+				    viewModel.getTaggedVideos();
+				});
+
+				var viewModel = {
+				    videos: ko.observableArray([]),
+				    currentVideoIndex: 1,
+				    videosPerPage: 6,
+				    query: "dothespread buildingyoungminds",
+				    getTaggedVideos : function() {
+				        viewModel.videos.removeAll();
+				        $.ajax({
+				            url: "https://gdata.youtube.com/feeds/api/videos?q=" + viewModel.query + "&start-index=" + viewModel.currentVideoIndex + "&max-results=" + viewModel.videosPerPage + "&v=2&alt=jsonc",
+				            dataType: 'jsonp',
+				            success: function(data) {
+				                var entries = data.data.items || [];
+				                for(i=0; i < entries.length; i++) { // IE8 needs it to be like this
+				                    var entry = entries[i];
+				                    viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault, "runtime" : entry.duration, "views" : entry.viewCount});
+				                }
+				                viewModel.currentVideoIndex = viewModel.currentVideoIndex + entries.length;
+				                Shadowbox.teardown("a.video_thumbnail");
+				                Shadowbox.setup("a.video_thumbnail", {
+				                    gallery: "videos",
+				                handleOversize: "drag",
+				                modal: true,
+				                enableKeys: true,
+				                width: 900,
+				                height: 507,
+								player: "html",
+				paginationbelow:true
+				                });
+				            }
+				        });
+				    }
+				}
+				ko.applyBindings(viewModel);
+
+				</script>
+
+
+			</p>
+		</div>
+		<h3><a href="endorsements">Endorsements</a></h3>
+		<div>
+			<p>
+				<div id="mainsection">
+				<table width="800">
+			        <tr>
+			            <td class= "contentpanel" cellpadding="10">Building Young Minds would like to thank our friends who support <span class="dothespreadcolor">Do The Spread</span> and our other activities.
+			            </td>
+			        </tr>
+
+				    <tr border="0" cellpadding="10" align="right">
+						<td>      
+								<a href="http://www.thoughtworks.com/" target="_blank">
+								<img src="/images/tw_logo.png" 
+								border="0" alt="" width="460" height="84" /></a>
+			        	</td>
+					</tr>
+
+			        <tr border="0" cellpadding="10" align="center">
+						<td>      
+							<a href="http://www.dinosaurbarbque.com" target="_blank">
+							<img class="alignnone size-thumbnail wp-image-259" title="PikeletÐaround"
+							src="http://www.buildingyoungminds.org/wp-content/uploads/2011/02/Dinologo3-150x150.jpg"
+							border="0" alt="" width="300" height="300" /></a>
+			        	</td>
+					</tr>
+
+			        <tr border="0" cellpadding="10">
+						<td>      
+							<a href="http://www.uprinting.com/" target="_blank">
+							<img src="http://uprinting.s3.amazonaws.com/images/234x60-uprinting.png" 
+							border="0" alt="" width="425" /></a>
+			       		</td>
+					</tr>
+
+			    </table>
+			</div>
+			</p>
+		</div>
+	</div>
 </div>
+
+
+
+
+<div>
+	<table width="900">
+	<tr><td>
+    <script>
+        new TWTR.Widget({
+            version: 2,
+            type: 'search',
+            search: 'dothespread',
+            interval: 30000,
+            title: '',
+            subject: 'Do the spread',
+            width: 600,
+            height: 150,
+            theme: {
+                shell: {
+                    background: '#C2D1B2',
+                    color: '#ffffff'
+                },
+                tweets: {
+                    background: '#ffffff',
+                    color: 'black',
+                    links: '#cc0000'
+                }
+            },
+            features: {
+                scrollbar: false,
+                loop: true,
+                live: true,
+                behavior: 'default'
+            }
+        }).render().start();
+    </script>
+	</td>
+	<td>
+		<div class="socialicon">	
+			<table align="center">
+			   <tr><td>   
+				<a href="http://www.buildingyoungminds.org" target="_blank">
+				 <img class="socialicon" src="http://www.buildingyoungminds.org/wp-content/themes/smallfolio//images/logo.jpg"
+				 width="100"   alt="">
+				</a>
+				</td></tr>
+		       	<tr><td>© 2011<br><a href="http://www.buildingyoungminds.org" target="_blank">Building Young Minds</a></td></tr>	
+			</table>
+		</div>
+	</td></tr></table>
+</div>
+
 
 <div style="clear: both;"></div>

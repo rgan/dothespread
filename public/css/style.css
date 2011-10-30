@@ -131,9 +131,19 @@ body {
 .video_thumbgroup {
     float: left;
     width: 222px;
-    height: 175px;
+    height: 150px;
     line-height: 1.1em;
     font-size: 11px;
+    display: inline;
+    overflow: hidden;
+}
+
+.video_thumbgroup_mobile {
+    float: left;
+    width: 350px;
+    height: 250px;
+    line-height: 1.1em;
+    font-size: 12px;
     display: inline;
     overflow: hidden;
 }

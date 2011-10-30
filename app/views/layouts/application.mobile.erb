@@ -16,136 +16,91 @@
     <link rel="stylesheet" type="text/css" media="all" href="/css/custom-theme/jquery-ui-1.8.16.custom.css"/>
 </head>
 <body>
-<div>
-    <div id="google_translate_element"></div>
-    <script>
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en'
-            }, 'google_translate_element');
-        }
-    </script>
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  <div id="dothespreadtitle">
-    <div class="dothespreadfont">Do The Spread</div>
-    <div class="smallbluefont">Global Flash Mob</div>
-  </div>
-
-    <div style="clear: both;"><p></p></div>
-</div>
-<div id=countdownclock>
-    <div data-bind="template: { name:'countdownClockTemplate'}"></div>
-    <div>
-        <script>
-            new TWTR.Widget({
-                version: 2,
-                type: 'search',
-                search: 'dothespread',
-                interval: 30000,
-                title: '',
-                subject: 'Do the spread',
-                width: 200,
-                height: 200,
-                theme: {
-                    shell: {
-                        background: '#C2D1B2',
-                        color: '#ffffff'
-                    },
-                    tweets: {
-                        background: '#ffffff',
-                        color: 'black',
-                        links: '#cc0000'
-                    }
-                },
-                features: {
-                    scrollbar: false,
-                    loop: true,
-                    live: true,
-                    behavior: 'default'
-                }
-            }).render().start();
-        </script>
-    </div>
-
-<div class="socialicon">
 	
+	<div>
+	    <div id="google_translate_element"></div>
+	    <script>
+	        function googleTranslateElementInit() {
+	            new google.translate.TranslateElement({
+	                pageLanguage: 'en'
+	            }, 'google_translate_element');
+	        }
+	    </script>
+	    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<br>
+	  <div id="dothespreadtitle">
+	    <div class="dothespreadfont">Do The Spread</div>
+	    <div class="smallbluefont">Global Flash Mob</div>
+	  </div>
+
+	    <div style="clear: both;"><p></p></div>
+	</div>
 	
-	<table width= "220"> </table>
+	<div class="socialicon">	
+			<table>
+			  <tr>
+
+			    <td><a href="http://www.facebook.com/BuildingYoungMinds" target="_blank">
+						<img class="socialicon" src="/images/facebook-red.png"  name="facebook_hover"
+			  width="150" height = "150" />
+				</a></td>
+
+			    <td><a href="http://twitter.com/share?url=http://dothespread.com&via=bym_ny">
+					<img class="socialicon" src="/images/twitter-red.png"  name="twitter_hover"
+			 width="150" height = "150" />
+				</a></td>
+
+			    <td><a href="mailto:?subject=Check out this site&body=The Spread is a dance movement that will unite the world on World AIDS Day 2011. %0A%0A Check out the site www.dothespread.com">
+					<img class="socialicon" src="/images/email-red.png"  name="email_hover"
+				 width="150" height = "150" />
+				</a></td>
+
+				<td>
+	   				<div id=countdownclock>
+	    				<div data-bind="template: { name:'countdownClockTemplate'}"></div>
+	  			</td>
+			  </tr>
+
+			</table>
+
+	</div>
+
+	<script id="countdownClockTemplate" type="text/html">
+
+	    <div class="thedate">Dec 1 2011</div>
+	    <div class="thetime">12:01 PM</div>
+		<div class="daysLeft">${clockModel.getDaysLeft()} days</div>
+	</script>
+
+	<script>
+
+
+	        var clockModel = {
+	            getDaysLeft: function() {
+	                var aidsDay = new Date(2011, 11, 1);
+	                return Math.ceil((aidsDay.getTime() - (new Date()).getTime()) / (24 * 3600 * 1000));
+	            }
+	        }
+	        ko.applyBindings(clockModel);
+
+	</script>
+	<%= yield %>
 	
-	<table width= "200">
-	  <tr>
-		
-	    <td><a href="http://www.facebook.com/BuildingYoungMinds" target="_blank">
-				<img class="socialicon" src="/images/facebook-red.png"  name="facebook_hover"
-		onMouseOver="document.images['facebook_hover'].src='/images/facebook-red-mo.png'"
-		onMouseOut="document.images['facebook_hover'].src='/images/facebook-red.png'"
-	  width="50" height = "50" />
-		</a></td>
-		
-	    <td><a href="http://twitter.com/share?url=http://dothespread.com&via=bym_ny">
-			<img class="socialicon" src="/images/twitter-red.png"  name="twitter_hover"
-		onMouseOver="document.images['twitter_hover'].src='/images/twitter-red-mo.png'"
-		onMouseOut="document.images['twitter_hover'].src='/images/twitter-red.png'"
-	 width="50" height = "50" />
-		</a></td>
 
-	    <td><a href="mailto:?subject=Check out this site&body=The Spread is a dance movement that will unite the world on World AIDS Day 2011. %0A%0A Check out the site www.dothespread.com">
-			<img class="socialicon" src="/images/email-red.png"  name="email_hover"
-			onMouseOver="document.images['email_hover'].src='/images/email-red-mo.png'"
-			onMouseOut="document.images['email_hover'].src='/images/email-red.png'"
-		 width="50" height = "50" />
-		</a></td>
-		
-	  </tr>
-	   <tr><td colspan="3">   
-		<a href="http://www.buildingyoungminds.org" target="_blank">
-		 <img class="socialicon" src="http://www.buildingyoungminds.org/wp-content/themes/smallfolio//images/logo.jpg"
-		 width="150"   alt="">
-		</a></td></tr>
-       <tr><td colspan="3">© 2011<br><a href="http://www.buildingyoungminds.org" target="_blank">Building Young Minds</a></td></tr>	
+	<script type="text/javascript">
 
-<tr><td colspan="3"><BR>MOBILE</td></tr>
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-26529542-1']);
+	  _gaq.push(['_trackPageview']);
 
-	</table>
-</div>	
-</div>
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
 
-<script id="countdownClockTemplate" type="text/html">
-
-    <div class="thedate">Dec 1 2011</div>
-    <div class="thetime">12:01 PM</div>
-	<div class="daysLeft">${clockModel.getDaysLeft()} days</div>
-</script>
-
-<script>
+	</script>
 
 
-        var clockModel = {
-            getDaysLeft: function() {
-                var aidsDay = new Date(2011, 11, 1);
-                return Math.ceil((aidsDay.getTime() - (new Date()).getTime()) / (24 * 3600 * 1000));
-            }
-        }
-        ko.applyBindings(clockModel);
-
-</script>
-<%= yield %>
-
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-26529542-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-
-
-</body>
-</html>
+	</body>
+	</html>

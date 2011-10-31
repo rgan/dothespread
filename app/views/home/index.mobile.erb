@@ -49,10 +49,13 @@
 				           <div class="videos_container">
 				            {{each videos}}
 				            <div class="video_thumbgroup_mobile">
-				            <a class="video_thumbnail" href="http://www.youtube.com/v/${id}&rel=0&autoplay=1" title="${title}">
-				                <img width="288" height="162" src='${thumbnail}'/></a>
+					       <a class="video_thumbnail">
+							<iframe class="youtube-player" type="text/html" width="288" height="162" 		
+							src="http://www.youtube.com/embed/${id}" frameborder="0">
+							</iframe></td></a>
+				        
 				              <dl class="video_metadata">
-				                <dd class="video_metadata_item"><b>${title}</b></dd>
+				                <dd class="video_metadata_item"><strong>${title}</strong></dd>
 				                <dd class="video_metadata_item">Time:${runtime} seconds</dd>
 				                <dd class="video_metadata_item">Views:${views}</dd>
 				              </dl>
@@ -93,17 +96,7 @@
 				                    viewModel.videos.push({"title" : entry.title, "id" : entry.id, "thumbnail" : entry.thumbnail.sqDefault, "runtime" : entry.duration, "views" : entry.viewCount});
 				                }
 				                viewModel.currentVideoIndex = viewModel.currentVideoIndex + entries.length;
-				                Shadowbox.teardown("a.video_thumbnail");
-				                Shadowbox.setup("a.video_thumbnail", {
-				                    gallery: "videos",
-				                handleOversize: "drag",
-				                modal: true,
-				                enableKeys: true,
-				                width: 900,
-				                height: 507,
-								player: "swf",
-				paginationbelow:true
-				                });
+				              
 				            }
 				        });
 				    }

@@ -3,8 +3,8 @@
 
 en:
   title_label: "Give your video a title:"
-  video_upload_form_title: "Share your video - What is it?"
-  video_metadata_upload_form_title: "Share your video - Where is it?"
+  video_upload_form_title: "Share your video - Where is it?"
+  video_metadata_upload_form_title: "Share your video - What is it?"
   video_uploaded_form_title: "Share your video - SUCCESS!"
   select_file_for_upload: "Locate your video..."
   uploaded_message: "Your video has been uploaded to YouTube! Visit your YouTube account to see this video immediately. Once YouTube processes your video, it should appear in our Video Gallery."
@@ -12,4 +12,4 @@ en:
   submit_btn: "Next Step >>"
   default_keywords: "#dothespread , #buildingyoungminds"
   uploaded_view_title: "Video Uploaded"
-  service_error: "Error uploading metadata to YouTube. Ensure that your account is setup correctly."
+  service_error: "Error uploading to YouTube. Ensure that your account is setup correctly."

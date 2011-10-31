@@ -1,5 +1,8 @@
 Dothespread::Application.routes.draw do
 
+  match "/" => redirect("/mobile"), :constraints => {:user_agent => /(Mobile\/.+Safari)|Android/}
+  get 'mobile' => "home#index", :mobile => true
+
   match 'endorsements', :to => 'home#endorsements'
   match 'videos/uploaded' => "videos#uploaded"
   resources :videos

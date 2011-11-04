@@ -1,3 +1,5 @@
+begin
+
 require 'rspec/core'
 require 'rspec/core/rake_task'
 if default = Rake.application.instance_variable_get('@tasks')['default']
@@ -47,5 +49,8 @@ namespace :spec do
     ::CodeStatistics::TEST_TYPES << "Routing specs" if File.exist?('spec/routing')
     ::CodeStatistics::TEST_TYPES << "Request specs" if File.exist?('spec/requests')
   end
+end
+rescue LoadError
+  desc 'rspec rake task not available'
 end
 

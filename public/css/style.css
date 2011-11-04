@@ -97,6 +97,13 @@
     border: 0px 0px 0px 0px;
 }
 
+.facebook_rsvp {
+    font-size: 1em;
+    color: #336600;
+    text-align: center;
+    border: 0px 0px 0px 0px;
+}
+
 .contentpanel {
 	background-color: #cfcfcf;
 	width:"100%";

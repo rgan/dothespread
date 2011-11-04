@@ -13,7 +13,6 @@ class GoogleAnalytics
 
       http.request_get(uri.request_uri, {'Authorization' => "GoogleLogin auth=#{token}", 'GData-Version' => '2'}) { |response|
         raise response.body unless response.code == "200"
-        puts response.body
         parsed_json = ActiveSupport::JSON.decode(response.body)
         return parsed_json["feed"]["entry"].collect { |entry| ViewsByLocation.from_json(entry) }
       }

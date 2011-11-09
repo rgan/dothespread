@@ -8,9 +8,15 @@ class MapJob
   end
 
   def getMap(locations)
-    map_url = "http://maps.googleapis.com/maps/api/staticmap?center=45,5&zoom=1&format=png&sensor=false&size=500x350&maptype=roadmap&style=feature:water|visibility:on|hue:0xff1100|lightness:100&style=feature:administrative|hue:0x0000ff|visibility:off&style=feature:water|element:labels|visibility:off&style=feature:poi|visibility:off&style=feature:landscape|element:geometry|visibility:on|hue:0x00ff19|lightness:-55"
+    map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=1&format=png&sensor=false&size=500x350&maptype=roadmap&center=45,5"
     markers = locations.collect { |location| location.latitude + "," + location.longitude}.join("|")
     map_url = map_url + "&markers=size:tiny%7Ccolor:red%7C" + URI.escape(markers)
+    map_url = map_url + ["feature:water|visibility:on|hue:0xff1100|lightness:100",
+                    "feature:administrative|hue:0x0000ff|visibility:off",
+                    "feature:water|element:labels|visibility:off",
+                    "feature:poi|visibility:off",
+                    "feature:landscape|element:geometry|visibility:on|hue:0x00ff19|lightness:-55"].inject("") {|memo, f| memo + "&style=" + URI.escape(f)}
+    puts map_url
     uri = URI.parse(map_url)
     http = Net::HTTP.new(uri.host, uri.port)
     begin

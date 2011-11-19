@@ -57,7 +57,7 @@ describe "ViewsByLocation" do
   end
 
   it "should return true if locations are similar" do
-    ViewsByLocation.new("34.1364","-118.4745", 1).similar_location(ViewsByLocation.new("34.1490","-118.4514", 1)).should be_true
-    ViewsByLocation.new("34.1364","-120.7745", 1).similar_location(ViewsByLocation.new("34.1490","-118.4514", 1)).should be_false
+    ViewsByLocation.new("34.1364","-118.4745", 1).similar_location(ViewsByLocation.new("34.1490","-118.4514", 1), 0.2).should be_true
+    ViewsByLocation.new("34.1364","-120.7745", 1).similar_location(ViewsByLocation.new("34.1490","-118.4514", 1), 0.2).should be_false
   end
 end

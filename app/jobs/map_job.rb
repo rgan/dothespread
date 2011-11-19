@@ -2,18 +2,19 @@ require 'google_analytics'
 
 class MapJob
   MAX_ELEMENTS= 83
+  DIFF = 0.5
 
   def perform
     locations = GoogleAnalytics.getFeed('51973535', ENV["ANALYTICS_USER"], ENV["ANALYTICS_PWD"])
     puts "Total locations:#{locations.size}"
     locations = locations.select { |location| !(location.latitude.round() == 0 && location.longitude.round() == 0)}
     sorted_locations = locations.sort { |l1,l2| l2.latitude.to_f <=> l1.latitude.to_f}
-    sorted_locations.each_with_index { |l, i| puts l.latitude.to_s + "," + l.longitude.to_s}
+    #sorted_locations.each_with_index { |l, i| puts l.latitude.to_s + "," + l.longitude.to_s}
     puts "Total locations after removing zeros:#{sorted_locations.size}"
     filtered_locations = []
     filtered_locations << sorted_locations[0]
-    sorted_locations.each_cons(2) { |elements| filtered_locations << elements[1] if !elements[0].similar_location(elements[1]) }
-    puts "After removing locations that are close to each other: #{filtered_locations.size}"
+    sorted_locations.each_cons(2) { |elements| filtered_locations << elements[1] if !elements[0].similar_location(elements[1], DIFF) }
+    puts "After removing locations that are close to each other (#{DIFF}): #{filtered_locations.size}"
     getMap(filtered_locations.take(MAX_ELEMENTS))
   end
 

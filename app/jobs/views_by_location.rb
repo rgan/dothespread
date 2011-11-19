@@ -11,8 +11,8 @@ class ViewsByLocation
     return ViewsByLocation.new(dimension_value("ga:latitude", dimensions_array), dimension_value("ga:longitude", dimensions_array), no_of_views)
   end
 
-  def similar_location(location)
-      return (@latitude - location.latitude).abs < 0.2 && (@longitude - location.longitude).abs < 0.2
+  def similar_location(location, diff)
+      return (@latitude - location.latitude).abs < diff && (@longitude - location.longitude).abs < diff
   end
 
   private

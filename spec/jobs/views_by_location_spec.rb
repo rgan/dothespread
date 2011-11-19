@@ -51,8 +51,13 @@ describe "ViewsByLocation" do
   json
   it "should parse from json" do
     page_view = ViewsByLocation.from_json(ActiveSupport::JSON.decode(json))
-    page_view.longitude.should == "-96.7699"
-    page_view.latitude.should == "32.8030"
+    page_view.longitude.should == -96.7699
+    page_view.latitude.should == 32.8030
     page_view.no_of_views.should == "36"
+  end
+
+  it "should return true if locations are similar" do
+    ViewsByLocation.new("34.1364","-118.4745", 1).similar_location(ViewsByLocation.new("34.1490","-118.4514", 1)).should be_true
+    ViewsByLocation.new("34.1364","-120.7745", 1).similar_location(ViewsByLocation.new("34.1490","-118.4514", 1)).should be_false
   end
 end

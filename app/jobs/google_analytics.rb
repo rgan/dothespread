@@ -5,7 +5,7 @@ class GoogleAnalytics
 
   def self.getFeed(id, email, pwd)
     token = getToken(email, pwd)
-    url = "https://www.google.com/analytics/feeds/data?ids=ga:#{id}&dimensions=ga:city,ga:country,ga:latitude,ga:longitude&metrics=ga:pageviews&start-date=2008-10-01&end-date=2011-12-31&start-index=1&max-results=100&v=2&alt=json"
+    url = "https://www.google.com/analytics/feeds/data?ids=ga:#{id}&dimensions=ga:city,ga:country,ga:latitude,ga:longitude&metrics=ga:pageviews&start-date=2008-10-01&end-date=2011-12-31&start-index=1&max-results=1000&v=2&alt=json"
     uri = URI.parse(url)
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true if uri.scheme == "https" # enable SSL/TLS

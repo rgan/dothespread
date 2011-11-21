@@ -1,4 +1,5 @@
 require 'google_analytics'
+require 'aws/s3'
 
 class MapJob
   MAX_ELEMENTS= 83
@@ -28,18 +29,10 @@ class MapJob
                     "feature:poi|visibility:off",
                     "feature:landscape|element:geometry|visibility:on|hue:0x00ff19|lightness:-55"].inject("") {|memo, f| memo + "&style=" + URI.escape(f)}
     puts map_url
-    uri = URI.parse(map_url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    begin
-      f = open('public/map_new_tmp.png', 'wb')
-      http.request_get(uri.request_uri) do |resp|
-        resp.read_body do |segment|
-          f.write(segment)
-        end
-      end
-    ensure
-      f.close()
-    end
-    FileUtils.cp('public/map_new_tmp.png', 'public/map_new.png')
+    AWS::S3::Base.establish_connection!(
+    :access_key_id     => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_KEY']
+    )
+    AWS::S3::S3Object.store('map.png',open(map_url), ENV['AWS_BUCKET'])
   end
 end

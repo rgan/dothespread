@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
+gem 'aws-s3'
 
 group :test do
   gem "rspec", "~> 2.6.0"

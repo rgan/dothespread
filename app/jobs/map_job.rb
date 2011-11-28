@@ -3,7 +3,7 @@ require 'aws/s3'
 
 class MapJob
   MAX_ELEMENTS= 83
-  DIFF = 0.5
+  DIFF = 0.9
 
   def perform
     locations = GoogleAnalytics.getFeed('51973535', ENV["ANALYTICS_USER"], ENV["ANALYTICS_PWD"])

@@ -7,4 +7,8 @@ class HomeController < ApplicationController
   def endorsements
     response.headers['Cache-Control'] = CACHE_CONTROL_VALUE
   end
+
+  def city
+    response.headers['Cache-Control'] = CACHE_CONTROL_VALUE
+  end
 end

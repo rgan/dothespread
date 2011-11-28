@@ -1,0 +1,24 @@
+<div id="mainsection">
+    <table id="mainsectiontable">
+        <tr>
+            <td>
+              <%= render :partial => 'shared/menu',
+                         :locals => {
+                                 :videos_state => 'ui-state-default',
+                                 :home_state => 'ui-state-default',
+                                 :endorsements_state => 'ui-state-default',
+                                 :city_state => 'ui-state-active',
+                         }
+              %>
+            </td>
+        </tr>
+	</table>
+	<table cellpadding="10"  >
+        <tr>
+            <td><img src="/images/city_spread.png"
+					border="0" alt="" width="960" height="720" /></td>
+        </tr>
+    </table>
+</div>
+
+<div style="clear: both;"></div>

@@ -4,6 +4,7 @@ Dothespread::Application.routes.draw do
   get 'mobile' => "home#index", :mobile => true
 
   match 'endorsements', :to => 'home#endorsements'
+  match 'city', :to => 'home#city'
   match 'videos/uploaded' => "videos#uploaded"
   resources :videos
 

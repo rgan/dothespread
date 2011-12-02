@@ -133,7 +133,7 @@
 
 <script id="countdownClockTemplate" type="text/html">
 
-    <div class="thedate">Dec 1 2011</div>
+    <div class="thedate">Dec 1 2012</div>
     <div class="thetime">12:01 PM</div>
 	<div class="daysLeft">${clockModel.getDaysLeft()} days</div>
     <div class="facebook_rsvp">  <a href="javascript:rsvp()">
@@ -147,7 +147,7 @@
 
         var clockModel = {
             getDaysLeft: function() {
-                var aidsDay = new Date(2011, 11, 1);
+                var aidsDay = new Date(2012, 11, 1);
                 return Math.ceil((aidsDay.getTime() - (new Date()).getTime()) / (24 * 3600 * 1000));
             }
         }
